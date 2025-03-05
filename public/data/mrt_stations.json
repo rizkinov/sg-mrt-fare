@@ -1,0 +1,794 @@
+{
+  "NS1": {
+    "name": "Jurong East",
+    "code": "NS1",
+    "line": "NS",
+    "coordinates": [103.7422, 1.3331]
+  },
+  "NS2": {
+    "name": "Bukit Batok",
+    "code": "NS2",
+    "line": "NS",
+    "coordinates": [103.7493, 1.3491]
+  },
+  "NS3": {
+    "name": "Bukit Gombak",
+    "code": "NS3",
+    "line": "NS",
+    "coordinates": [103.7519, 1.3591]
+  },
+  "NS4": {
+    "name": "Choa Chu Kang",
+    "code": "NS4",
+    "line": "NS",
+    "coordinates": [103.7472, 1.3852]
+  },
+  "NS5": {
+    "name": "Yew Tee",
+    "code": "NS5",
+    "line": "NS",
+    "coordinates": [103.7475, 1.3972]
+  },
+  "NS7": {
+    "name": "Kranji",
+    "code": "NS7",
+    "line": "NS",
+    "coordinates": [103.7624, 1.4251]
+  },
+  "NS8": {
+    "name": "Marsiling",
+    "code": "NS8",
+    "line": "NS",
+    "coordinates": [103.7741, 1.4325]
+  },
+  "NS9": {
+    "name": "Woodlands",
+    "code": "NS9",
+    "line": "NS",
+    "coordinates": [103.7864, 1.4369]
+  },
+  "NS10": {
+    "name": "Admiralty",
+    "code": "NS10",
+    "line": "NS",
+    "coordinates": [103.8009, 1.4406]
+  },
+  "NS11": {
+    "name": "Sembawang",
+    "code": "NS11",
+    "line": "NS",
+    "coordinates": [103.8201, 1.4491]
+  },
+  "NS13": {
+    "name": "Yishun",
+    "code": "NS13",
+    "line": "NS",
+    "coordinates": [103.8349, 1.4295]
+  },
+  "NS14": {
+    "name": "Khatib",
+    "code": "NS14",
+    "line": "NS",
+    "coordinates": [103.8329, 1.4174]
+  },
+  "NS15": {
+    "name": "Yio Chu Kang",
+    "code": "NS15",
+    "line": "NS",
+    "coordinates": [103.8349, 1.3817]
+  },
+  "NS16": {
+    "name": "Ang Mo Kio",
+    "code": "NS16",
+    "line": "NS",
+    "coordinates": [103.8396, 1.3699]
+  },
+  "NS17": {
+    "name": "Bishan",
+    "code": "NS17",
+    "line": "NS",
+    "coordinates": [103.8483, 1.3513]
+  },
+  "NS18": {
+    "name": "Braddell",
+    "code": "NS18",
+    "line": "NS",
+    "coordinates": [103.8468, 1.3402]
+  },
+  "NS19": {
+    "name": "Toa Payoh",
+    "code": "NS19",
+    "line": "NS",
+    "coordinates": [103.8474, 1.3326]
+  },
+  "NS20": {
+    "name": "Novena",
+    "code": "NS20",
+    "line": "NS",
+    "coordinates": [103.8438, 1.3204]
+  },
+  "NS21": {
+    "name": "Newton",
+    "code": "NS21",
+    "line": "NS",
+    "coordinates": [103.8376, 1.3138]
+  },
+  "NS22": {
+    "name": "Orchard",
+    "code": "NS22",
+    "line": "NS",
+    "coordinates": [103.8324, 1.3043]
+  },
+  "NS23": {
+    "name": "Somerset",
+    "code": "NS23",
+    "line": "NS",
+    "coordinates": [103.8389, 1.3004]
+  },
+  "NS24": {
+    "name": "Dhoby Ghaut",
+    "code": "NS24",
+    "line": "NS",
+    "coordinates": [103.8458, 1.2988]
+  },
+  "NS25": {
+    "name": "City Hall",
+    "code": "NS25",
+    "line": "NS",
+    "coordinates": [103.8523, 1.2931]
+  },
+  "NS26": {
+    "name": "Raffles Place",
+    "code": "NS26",
+    "line": "NS",
+    "coordinates": [103.8514, 1.2839]
+  },
+  "NS27": {
+    "name": "Marina Bay",
+    "code": "NS27",
+    "line": "NS",
+    "coordinates": [103.8546, 1.2765]
+  },
+  "NS28": {
+    "name": "Marina South Pier",
+    "code": "NS28",
+    "line": "NS",
+    "coordinates": [103.8633, 1.2713]
+  },
+  "EW1": {
+    "name": "Pasir Ris",
+    "code": "EW1",
+    "line": "EW",
+    "coordinates": [103.9494, 1.3731]
+  },
+  "EW2": {
+    "name": "Tampines",
+    "code": "EW2",
+    "line": "EW",
+    "coordinates": [103.9454, 1.3546]
+  },
+  "EW3": {
+    "name": "Simei",
+    "code": "EW3",
+    "line": "EW",
+    "coordinates": [103.9534, 1.3432]
+  },
+  "EW4": {
+    "name": "Tanah Merah",
+    "code": "EW4",
+    "line": "EW",
+    "coordinates": [103.9465, 1.3271]
+  },
+  "EW5": {
+    "name": "Bedok",
+    "code": "EW5",
+    "line": "EW",
+    "coordinates": [103.9302, 1.3240]
+  },
+  "EW6": {
+    "name": "Kembangan",
+    "code": "EW6",
+    "line": "EW",
+    "coordinates": [103.9131, 1.3210]
+  },
+  "EW7": {
+    "name": "Eunos",
+    "code": "EW7",
+    "line": "EW",
+    "coordinates": [103.9031, 1.3197]
+  },
+  "EW8": {
+    "name": "Paya Lebar",
+    "code": "EW8",
+    "line": "EW",
+    "coordinates": [103.8923, 1.3178]
+  },
+  "EW9": {
+    "name": "Aljunied",
+    "code": "EW9",
+    "line": "EW",
+    "coordinates": [103.8828, 1.3164]
+  },
+  "EW10": {
+    "name": "Kallang",
+    "code": "EW10",
+    "line": "EW",
+    "coordinates": [103.8714, 1.3115]
+  },
+  "EW11": {
+    "name": "Lavender",
+    "code": "EW11",
+    "line": "EW",
+    "coordinates": [103.8631, 1.3074]
+  },
+  "EW12": {
+    "name": "Bugis",
+    "code": "EW12",
+    "line": "EW",
+    "coordinates": [103.8558, 1.3008]
+  },
+  "EW13": {
+    "name": "City Hall",
+    "code": "EW13",
+    "line": "EW",
+    "coordinates": [103.8523, 1.2931]
+  },
+  "EW14": {
+    "name": "Raffles Place",
+    "code": "EW14",
+    "line": "EW",
+    "coordinates": [103.8514, 1.2839]
+  },
+  "EW15": {
+    "name": "Tanjong Pagar",
+    "code": "EW15",
+    "line": "EW",
+    "coordinates": [103.8459, 1.2765]
+  },
+  "EW16": {
+    "name": "Outram Park",
+    "code": "EW16",
+    "line": "EW",
+    "coordinates": [103.8394, 1.2805]
+  },
+  "EW17": {
+    "name": "Tiong Bahru",
+    "code": "EW17",
+    "line": "EW",
+    "coordinates": [103.8274, 1.2862]
+  },
+  "EW18": {
+    "name": "Redhill",
+    "code": "EW18",
+    "line": "EW",
+    "coordinates": [103.8168, 1.2896]
+  },
+  "EW19": {
+    "name": "Queenstown",
+    "code": "EW19",
+    "line": "EW",
+    "coordinates": [103.8058, 1.2948]
+  },
+  "EW20": {
+    "name": "Commonwealth",
+    "code": "EW20",
+    "line": "EW",
+    "coordinates": [103.7984, 1.3025]
+  },
+  "EW21": {
+    "name": "Buona Vista",
+    "code": "EW21",
+    "line": "EW",
+    "coordinates": [103.7902, 1.3072]
+  },
+  "EW22": {
+    "name": "Dover",
+    "code": "EW22",
+    "line": "EW",
+    "coordinates": [103.7786, 1.3115]
+  },
+  "EW23": {
+    "name": "Clementi",
+    "code": "EW23",
+    "line": "EW",
+    "coordinates": [103.7651, 1.3152]
+  },
+  "EW24": {
+    "name": "Jurong East",
+    "code": "EW24",
+    "line": "EW",
+    "coordinates": [103.7422, 1.3331]
+  },
+  "NE1": {
+    "name": "HarbourFront",
+    "code": "NE1",
+    "line": "NE",
+    "coordinates": [103.8208, 1.2657]
+  },
+  "NE3": {
+    "name": "Outram Park",
+    "code": "NE3",
+    "line": "NE",
+    "coordinates": [103.8394, 1.2805]
+  },
+  "NE4": {
+    "name": "Chinatown",
+    "code": "NE4",
+    "line": "NE",
+    "coordinates": [103.8437, 1.2847]
+  },
+  "NE5": {
+    "name": "Clarke Quay",
+    "code": "NE5",
+    "line": "NE",
+    "coordinates": [103.8465, 1.2883]
+  },
+  "NE6": {
+    "name": "Dhoby Ghaut",
+    "code": "NE6",
+    "line": "NE",
+    "coordinates": [103.8458, 1.2988]
+  },
+  "NE7": {
+    "name": "Little India",
+    "code": "NE7",
+    "line": "NE",
+    "coordinates": [103.8507, 1.3067]
+  },
+  "NE8": {
+    "name": "Farrer Park",
+    "code": "NE8",
+    "line": "NE",
+    "coordinates": [103.8541, 1.3125]
+  },
+  "NE9": {
+    "name": "Boon Keng",
+    "code": "NE9",
+    "line": "NE",
+    "coordinates": [103.8619, 1.3195]
+  },
+  "NE10": {
+    "name": "Potong Pasir",
+    "code": "NE10",
+    "line": "NE",
+    "coordinates": [103.8691, 1.3311]
+  },
+  "NE11": {
+    "name": "Woodleigh",
+    "code": "NE11",
+    "line": "NE",
+    "coordinates": [103.8708, 1.3392]
+  },
+  "NE12": {
+    "name": "Serangoon",
+    "code": "NE12",
+    "line": "NE",
+    "coordinates": [103.8735, 1.3502]
+  },
+  "NE13": {
+    "name": "Kovan",
+    "code": "NE13",
+    "line": "NE",
+    "coordinates": [103.8851, 1.3601]
+  },
+  "NE14": {
+    "name": "Hougang",
+    "code": "NE14",
+    "line": "NE",
+    "coordinates": [103.8927, 1.3712]
+  },
+  "NE15": {
+    "name": "Buangkok",
+    "code": "NE15",
+    "line": "NE",
+    "coordinates": [103.8931, 1.3829]
+  },
+  "NE16": {
+    "name": "Sengkang",
+    "code": "NE16",
+    "line": "NE",
+    "coordinates": [103.8954, 1.3917]
+  },
+  "NE17": {
+    "name": "Punggol",
+    "code": "NE17",
+    "line": "NE",
+    "coordinates": [103.9023, 1.4047]
+  },
+  "CC1": {
+    "name": "Dhoby Ghaut",
+    "code": "CC1",
+    "line": "CC",
+    "coordinates": [103.8458, 1.2988]
+  },
+  "CC2": {
+    "name": "Bras Basah",
+    "code": "CC2",
+    "line": "CC",
+    "coordinates": [103.8512, 1.2969]
+  },
+  "CC3": {
+    "name": "Esplanade",
+    "code": "CC3",
+    "line": "CC",
+    "coordinates": [103.8554, 1.2935]
+  },
+  "CC4": {
+    "name": "Promenade",
+    "code": "CC4",
+    "line": "CC",
+    "coordinates": [103.8607, 1.2935]
+  },
+  "CC5": {
+    "name": "Nicoll Highway",
+    "code": "CC5",
+    "line": "CC",
+    "coordinates": [103.8636, 1.3001]
+  },
+  "CC6": {
+    "name": "Stadium",
+    "code": "CC6",
+    "line": "CC",
+    "coordinates": [103.8753, 1.3028]
+  },
+  "CC7": {
+    "name": "Mountbatten",
+    "code": "CC7",
+    "line": "CC",
+    "coordinates": [103.8826, 1.3062]
+  },
+  "CC8": {
+    "name": "Dakota",
+    "code": "CC8",
+    "line": "CC",
+    "coordinates": [103.8886, 1.3086]
+  },
+  "CC9": {
+    "name": "Paya Lebar",
+    "code": "CC9",
+    "line": "CC",
+    "coordinates": [103.8923, 1.3178]
+  },
+  "CC10": {
+    "name": "MacPherson",
+    "code": "CC10",
+    "line": "CC",
+    "coordinates": [103.8898, 1.3267]
+  },
+  "CC11": {
+    "name": "Tai Seng",
+    "code": "CC11",
+    "line": "CC",
+    "coordinates": [103.8878, 1.3359]
+  },
+  "CC12": {
+    "name": "Bartley",
+    "code": "CC12",
+    "line": "CC",
+    "coordinates": [103.8798, 1.3429]
+  },
+  "CC13": {
+    "name": "Serangoon",
+    "code": "CC13",
+    "line": "CC",
+    "coordinates": [103.8735, 1.3502]
+  },
+  "CC14": {
+    "name": "Lorong Chuan",
+    "code": "CC14",
+    "line": "CC",
+    "coordinates": [103.8642, 1.3515]
+  },
+  "CC15": {
+    "name": "Bishan",
+    "code": "CC15",
+    "line": "CC",
+    "coordinates": [103.8483, 1.3513]
+  },
+  "CC16": {
+    "name": "Marymount",
+    "code": "CC16",
+    "line": "CC",
+    "coordinates": [103.8394, 1.3491]
+  },
+  "CC17": {
+    "name": "Caldecott",
+    "code": "CC17",
+    "line": "CC",
+    "coordinates": [103.8394, 1.3378]
+  },
+  "CC19": {
+    "name": "Botanic Gardens",
+    "code": "CC19",
+    "line": "CC",
+    "coordinates": [103.8149, 1.3225]
+  },
+  "CC20": {
+    "name": "Farrer Road",
+    "code": "CC20",
+    "line": "CC",
+    "coordinates": [103.8075, 1.3173]
+  },
+  "CC21": {
+    "name": "Holland Village",
+    "code": "CC21",
+    "line": "CC",
+    "coordinates": [103.7961, 1.3119]
+  },
+  "CC22": {
+    "name": "Buona Vista",
+    "code": "CC22",
+    "line": "CC",
+    "coordinates": [103.7902, 1.3072]
+  },
+  "CC23": {
+    "name": "one-north",
+    "code": "CC23",
+    "line": "CC",
+    "coordinates": [103.7874, 1.2997]
+  },
+  "CC24": {
+    "name": "Kent Ridge",
+    "code": "CC24",
+    "line": "CC",
+    "coordinates": [103.7846, 1.2935]
+  },
+  "CC25": {
+    "name": "Haw Par Villa",
+    "code": "CC25",
+    "line": "CC",
+    "coordinates": [103.7819, 1.2829]
+  },
+  "CC26": {
+    "name": "Pasir Panjang",
+    "code": "CC26",
+    "line": "CC",
+    "coordinates": [103.7916, 1.2761]
+  },
+  "CC27": {
+    "name": "Labrador Park",
+    "code": "CC27",
+    "line": "CC",
+    "coordinates": [103.8025, 1.2724]
+  },
+  "CC28": {
+    "name": "Telok Blangah",
+    "code": "CC28",
+    "line": "CC",
+    "coordinates": [103.8097, 1.2705]
+  },
+  "CC29": {
+    "name": "HarbourFront",
+    "code": "CC29",
+    "line": "CC",
+    "coordinates": [103.8208, 1.2657]
+  },
+  "DT1": {
+    "name": "Bukit Panjang",
+    "code": "DT1",
+    "line": "DT",
+    "coordinates": [103.7642, 1.3785]
+  },
+  "DT2": {
+    "name": "Cashew",
+    "code": "DT2",
+    "line": "DT",
+    "coordinates": [103.7642, 1.3697]
+  },
+  "DT3": {
+    "name": "Hillview",
+    "code": "DT3",
+    "line": "DT",
+    "coordinates": [103.7674, 1.3625]
+  },
+  "DT5": {
+    "name": "Beauty World",
+    "code": "DT5",
+    "line": "DT",
+    "coordinates": [103.7758, 1.3412]
+  },
+  "DT6": {
+    "name": "King Albert Park",
+    "code": "DT6",
+    "line": "DT",
+    "coordinates": [103.7832, 1.3357]
+  },
+  "DT7": {
+    "name": "Sixth Avenue",
+    "code": "DT7",
+    "line": "DT",
+    "coordinates": [103.7969, 1.3307]
+  },
+  "DT8": {
+    "name": "Tan Kah Kee",
+    "code": "DT8",
+    "line": "DT",
+    "coordinates": [103.8075, 1.3257]
+  },
+  "DT9": {
+    "name": "Botanic Gardens",
+    "code": "DT9",
+    "line": "DT",
+    "coordinates": [103.8149, 1.3225]
+  },
+  "DT10": {
+    "name": "Stevens",
+    "code": "DT10",
+    "line": "DT",
+    "coordinates": [103.8269, 1.3201]
+  },
+  "DT11": {
+    "name": "Newton",
+    "code": "DT11",
+    "line": "DT",
+    "coordinates": [103.8376, 1.3138]
+  },
+  "DT12": {
+    "name": "Little India",
+    "code": "DT12",
+    "line": "DT",
+    "coordinates": [103.8507, 1.3067]
+  },
+  "DT13": {
+    "name": "Rochor",
+    "code": "DT13",
+    "line": "DT",
+    "coordinates": [103.8528, 1.3035]
+  },
+  "DT14": {
+    "name": "Bugis",
+    "code": "DT14",
+    "line": "DT",
+    "coordinates": [103.8558, 1.3008]
+  },
+  "DT15": {
+    "name": "Promenade",
+    "code": "DT15",
+    "line": "DT",
+    "coordinates": [103.8607, 1.2935]
+  },
+  "DT16": {
+    "name": "Bayfront",
+    "code": "DT16",
+    "line": "DT",
+    "coordinates": [103.8592, 1.2821]
+  },
+  "DT17": {
+    "name": "Downtown",
+    "code": "DT17",
+    "line": "DT",
+    "coordinates": [103.8528, 1.2795]
+  },
+  "DT18": {
+    "name": "Telok Ayer",
+    "code": "DT18",
+    "line": "DT",
+    "coordinates": [103.8485, 1.2821]
+  },
+  "DT19": {
+    "name": "Chinatown",
+    "code": "DT19",
+    "line": "DT",
+    "coordinates": [103.8437, 1.2847]
+  },
+  "TE1": {
+    "name": "Woodlands North",
+    "code": "TE1",
+    "line": "TE",
+    "coordinates": [103.7851, 1.4482]
+  },
+  "TE2": {
+    "name": "Woodlands",
+    "code": "TE2",
+    "line": "TE",
+    "coordinates": [103.7864, 1.4369]
+  },
+  "TE3": {
+    "name": "Woodlands South",
+    "code": "TE3",
+    "line": "TE",
+    "coordinates": [103.7934, 1.4273]
+  },
+  "TE4": {
+    "name": "Springleaf",
+    "code": "TE4",
+    "line": "TE",
+    "coordinates": [103.8183, 1.3975]
+  },
+  "TE5": {
+    "name": "Lentor",
+    "code": "TE5",
+    "line": "TE",
+    "coordinates": [103.8352, 1.3875]
+  },
+  "TE6": {
+    "name": "Mayflower",
+    "code": "TE6",
+    "line": "TE",
+    "coordinates": [103.8372, 1.3702]
+  },
+  "TE7": {
+    "name": "Bright Hill",
+    "code": "TE7",
+    "line": "TE",
+    "coordinates": [103.8329, 1.3631]
+  },
+  "TE8": {
+    "name": "Upper Thomson",
+    "code": "TE8",
+    "line": "TE",
+    "coordinates": [103.8329, 1.3547]
+  },
+  "TE9": {
+    "name": "Caldecott",
+    "code": "TE9",
+    "line": "TE",
+    "coordinates": [103.8394, 1.3378]
+  },
+  "TE10": {
+    "name": "Stevens",
+    "code": "TE10",
+    "line": "TE",
+    "coordinates": [103.8269, 1.3201]
+  },
+  "TE11": {
+    "name": "Napier",
+    "code": "TE11",
+    "line": "TE",
+    "coordinates": [103.8241, 1.3061]
+  },
+  "TE12": {
+    "name": "Orchard Boulevard",
+    "code": "TE12",
+    "line": "TE",
+    "coordinates": [103.8271, 1.3025]
+  },
+  "TE13": {
+    "name": "Orchard",
+    "code": "TE13",
+    "line": "TE",
+    "coordinates": [103.8324, 1.3043]
+  },
+  "TE14": {
+    "name": "Great World",
+    "code": "TE14",
+    "line": "TE",
+    "coordinates": [103.8329, 1.2931]
+  },
+  "TE15": {
+    "name": "Havelock",
+    "code": "TE15",
+    "line": "TE",
+    "coordinates": [103.8312, 1.2869]
+  },
+  "TE16": {
+    "name": "Outram Park",
+    "code": "TE16",
+    "line": "TE",
+    "coordinates": [103.8394, 1.2805]
+  },
+  "TE17": {
+    "name": "Maxwell",
+    "code": "TE17",
+    "line": "TE",
+    "coordinates": [103.8437, 1.2795]
+  },
+  "TE18": {
+    "name": "Shenton Way",
+    "code": "TE18",
+    "line": "TE",
+    "coordinates": [103.8501, 1.2765]
+  },
+  "TE19": {
+    "name": "Marina Bay",
+    "code": "TE19",
+    "line": "TE",
+    "coordinates": [103.8546, 1.2765]
+  },
+  "TE20": {
+    "name": "Gardens by the Bay",
+    "code": "TE20",
+    "line": "TE",
+    "coordinates": [103.8651, 1.2805]
+  }
+} 

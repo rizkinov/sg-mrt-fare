@@ -1,0 +1,32 @@
+{
+  "NS": {
+    "name": "North-South Line",
+    "color": "#e12323",
+    "stations": ["NS1", "NS2", "NS3", "NS4", "NS5", "NS7", "NS8", "NS9", "NS10", "NS11", "NS13", "NS14", "NS15", "NS16", "NS17", "NS18", "NS19", "NS20", "NS21", "NS22", "NS23", "NS24", "NS25", "NS26", "NS27", "NS28"]
+  },
+  "EW": {
+    "name": "East-West Line",
+    "color": "#009645",
+    "stations": ["EW1", "EW2", "EW3", "EW4", "EW5", "EW6", "EW7", "EW8", "EW9", "EW10", "EW11", "EW12", "EW13", "EW14", "EW15", "EW16", "EW17", "EW18", "EW19", "EW20", "EW21", "EW22", "EW23", "EW24"]
+  },
+  "NE": {
+    "name": "North-East Line",
+    "color": "#9900aa",
+    "stations": ["NE1", "NE3", "NE4", "NE5", "NE6", "NE7", "NE8", "NE9", "NE10", "NE11", "NE12", "NE13", "NE14", "NE15", "NE16", "NE17"]
+  },
+  "CC": {
+    "name": "Circle Line",
+    "color": "#fa9e0d",
+    "stations": ["CC1", "CC2", "CC3", "CC4", "CC5", "CC6", "CC7", "CC8", "CC9", "CC10", "CC11", "CC12", "CC13", "CC14", "CC15", "CC16", "CC17", "CC19", "CC20", "CC21", "CC22", "CC23", "CC24", "CC25", "CC26", "CC27", "CC28", "CC29"]
+  },
+  "DT": {
+    "name": "Downtown Line",
+    "color": "#005ec4",
+    "stations": ["DT1", "DT2", "DT3", "DT5", "DT6", "DT7", "DT8", "DT9", "DT10", "DT11", "DT12", "DT13", "DT14", "DT15", "DT16", "DT17", "DT18", "DT19"]
+  },
+  "TE": {
+    "name": "Thomson-East Coast Line",
+    "color": "#9D5516",
+    "stations": ["TE1", "TE2", "TE3", "TE4", "TE5", "TE6", "TE7", "TE8", "TE9", "TE10", "TE11", "TE12", "TE13", "TE14", "TE15", "TE16", "TE17", "TE18", "TE19", "TE20"]
+  }
+} 
