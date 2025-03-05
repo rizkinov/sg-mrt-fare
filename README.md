@@ -29,7 +29,7 @@ A web application that calculates MRT fares between stations in Singapore's Mass
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/sg-mrt-fare.git
+   git clone https://github.com/rizkinov/sg-mrt-fare.git
    cd sg-mrt-fare
    ```
 
