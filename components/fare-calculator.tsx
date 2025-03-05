@@ -262,9 +262,9 @@ export default function FareCalculator() {
               Starting Station
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-5">
+          <CardContent className="space-y-6">
             <div>
-              <Label htmlFor="line-filter" className="text-sm font-medium mb-1.5 block">
+              <Label htmlFor="line-filter" className="text-sm font-medium mb-2 block">
                 Filter by Line
               </Label>
               <Select
@@ -291,8 +291,8 @@ export default function FareCalculator() {
               </Select>
             </div>
             
-            <div>
-              <Label htmlFor="start-station" className="text-sm font-medium mb-1.5 block">
+            <div className="mt-4">
+              <Label htmlFor="start-station" className="text-sm font-medium mb-2 block">
                 Select Station
               </Label>
               <Select
@@ -330,9 +330,9 @@ export default function FareCalculator() {
               Destination Station
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-6">
             <div>
-              <Label htmlFor="dest-line-filter" className="text-sm font-medium mb-1.5 block">
+              <Label htmlFor="dest-line-filter" className="text-sm font-medium mb-2 block">
                 Filter by Line
               </Label>
               <Select
@@ -358,8 +358,8 @@ export default function FareCalculator() {
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label htmlFor="end-station" className="text-sm font-medium mb-1.5 block">
+            <div className="mt-4">
+              <Label htmlFor="end-station" className="text-sm font-medium mb-2 block">
                 Select Station
               </Label>
               <Select
@@ -391,104 +391,119 @@ export default function FareCalculator() {
         </Card>
       </div>
 
-      <Card>
-        <CardHeader className="pb-3">
-          <CardTitle className="text-xl">Fare Options</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <h3 className="text-base font-medium mb-3">Passenger Type</h3>
-              <RadioGroup
-                value={fareType}
-                onValueChange={(value) => setFareType(value as "adult" | "student" | "senior")}
-                className="space-y-3"
-              >
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="adult" id="adult" />
-                  <Label htmlFor="adult" className="font-normal">Adult</Label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="student" id="student" />
-                  <Label htmlFor="student" className="font-normal">Student</Label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="senior" id="senior" />
-                  <Label htmlFor="senior" className="font-normal">Senior</Label>
-                </div>
-              </RadioGroup>
-            </div>
-
-            <div>
-              <h3 className="text-base font-medium mb-3">Payment Method</h3>
-              <RadioGroup
-                value={paymentMethod}
-                onValueChange={(value) => setPaymentMethod(value as "card" | "cash")}
-                className="space-y-3"
-              >
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="card" id="card" />
-                  <Label htmlFor="card" className="font-normal">EZ-Link / NETS FlashPay</Label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <RadioGroupItem value="cash" id="cash" />
-                  <Label htmlFor="cash" className="font-normal">Cash / Standard Ticket</Label>
-                </div>
-              </RadioGroup>
-            </div>
-          </div>
-
-          <Button 
-            className="w-full py-6 text-base mt-4" 
-            onClick={handleCalculateFare}
-            disabled={!selectedStartStation || !selectedEndStation}
-          >
-            Calculate Fare
-          </Button>
-        </CardContent>
-      </Card>
-
-      {fare !== null && (
-        <Card className="border-2 border-primary/20 bg-primary/5">
+      <div className="mt-8">
+        <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-xl">Fare Result</CardTitle>
+            <CardTitle className="text-xl">Fare Options</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid gap-2 md:grid-cols-2">
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">From:</p>
-                <p className="font-medium">{getStationName(selectedStartStation)}</p>
+          <CardContent>
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="fare-type" className="text-sm font-medium mb-2 block">
+                    Passenger Type
+                  </Label>
+                  <Select
+                    value={fareType}
+                    onValueChange={(value) => setFareType(value as "adult" | "student" | "senior")}
+                  >
+                    <SelectTrigger id="fare-type" className="w-full">
+                      <SelectValue placeholder="Select passenger type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="adult">Adult</SelectItem>
+                      <SelectItem value="student">Student</SelectItem>
+                      <SelectItem value="senior">Senior Citizen</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <Label htmlFor="payment-method" className="text-sm font-medium mb-2 block">
+                    Payment Method
+                  </Label>
+                  <Select
+                    value={paymentMethod}
+                    onValueChange={(value) => setPaymentMethod(value as "card" | "cash")}
+                  >
+                    <SelectTrigger id="payment-method" className="w-full">
+                      <SelectValue placeholder="Select payment method" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="card">Card</SelectItem>
+                      <SelectItem value="cash">Cash</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">To:</p>
-                <p className="font-medium">{getStationName(selectedEndStation)}</p>
-              </div>
-            </div>
-            
-            <div className="grid gap-2 md:grid-cols-2">
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">Distance:</p>
-                <p className="font-medium">{distance?.toFixed(2)} km</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">Fare Type:</p>
-                <p className="font-medium capitalize">{fareType}</p>
-              </div>
-            </div>
-            
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Payment Method:</p>
-              <p className="font-medium">{paymentMethod === 'card' ? 'EZ-Link / NETS FlashPay' : 'Cash / Standard Ticket'}</p>
-            </div>
-            
-            <div className="mt-6 pt-4 border-t">
-              <div className="flex justify-between items-center">
-                <p className="text-lg font-semibold">Fare:</p>
-                <p className="text-2xl font-bold text-primary">${fare.toFixed(2)}</p>
+              
+              <div className="flex flex-col justify-center">
+                <Button 
+                  className="w-full" 
+                  size="lg"
+                  onClick={handleCalculateFare}
+                  disabled={!selectedStartStation || !selectedEndStation}
+                >
+                  Calculate Fare
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full mt-4" 
+                  onClick={() => setShowMapDialog(true)}
+                >
+                  Browse MRT Map
+                </Button>
               </div>
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {fare !== null && (
+        <div className="mt-8">
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-xl">Fare Result</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">From</h3>
+                    <p className="text-base font-medium">{selectedStartStation?.name} ({selectedStartStation?.code})</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">To</h3>
+                    <p className="text-base font-medium">{selectedEndStation?.name} ({selectedEndStation?.code})</p>
+                  </div>
+                </div>
+                
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">Distance</h3>
+                    <p className="text-base font-medium">{distance?.toFixed(1)} km</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">Passenger</h3>
+                    <p className="text-base font-medium capitalize">{fareType}</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">Payment</h3>
+                    <p className="text-base font-medium">{paymentMethod === 'card' ? 'Card' : 'Cash'}</p>
+                  </div>
+                </div>
+                
+                <div className="pt-4 border-t">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-base font-medium">Total Fare</h3>
+                    <p className="text-2xl font-bold">${fare.toFixed(2)}</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       <div className="flex justify-center mt-6">
