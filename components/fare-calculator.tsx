@@ -20,6 +20,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type Station = {
   name: string;
@@ -415,27 +416,27 @@ export default function FareCalculator() {
                     </SelectContent>
                   </Select>
                 </div>
-
+              </div>
+              
+              <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-1">
                     <Label htmlFor="time-of-day" className="text-sm font-medium mb-2 block">
                       Time of Travel
                     </Label>
-                    <div className="relative group">
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="h-5 w-5 p-0 rounded-full"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          window.alert("Off-Peak: Before 7:45am on weekdays (excluding public holidays)\nPeak: All other times");
-                        }}
-                      >
-                        <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
-                        <span className="sr-only">Time of travel info</span>
-                      </Button>
-                    </div>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="cursor-help">
+                            <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent side="right" className="max-w-xs">
+                          <p><strong>Off-Peak:</strong> Before 7:45am on weekdays (excluding public holidays)</p>
+                          <p><strong>Peak:</strong> All other times</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </div>
                   <Select
                     value={timeOfDay}
@@ -450,29 +451,29 @@ export default function FareCalculator() {
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
-              
-              <div className="flex flex-col justify-center">
+                
                 <Button 
-                  className="w-full" 
+                  className="w-full mt-auto" 
                   size="lg"
                   onClick={handleCalculateFare}
                   disabled={!selectedStartStation || !selectedEndStation}
                 >
                   Calculate Fare
                 </Button>
-                
-                <Button 
-                  variant="outline" 
-                  className="w-full mt-4" 
-                  onClick={() => {
-                    setShowMapDialog(true);
-                    setMapSelectionMode('browse');
-                  }}
-                >
-                  Browse MRT Map
-                </Button>
               </div>
+            </div>
+            
+            <div className="mt-6">
+              <Button 
+                variant="outline" 
+                className="w-full" 
+                onClick={() => {
+                  setShowMapDialog(true);
+                  setMapSelectionMode('browse');
+                }}
+              >
+                Browse MRT Map
+              </Button>
             </div>
           </CardContent>
         </Card>
