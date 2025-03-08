@@ -494,11 +494,27 @@ export default function FareCalculator() {
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground mb-2">From</h3>
-                    <p className="text-base font-medium">{selectedStartStation?.name} ({selectedStartStation?.code})</p>
+                    <p className="text-base font-medium flex items-center gap-2">
+                      {selectedStartStation && (
+                        <span 
+                          className="inline-block w-3 h-3 rounded-full" 
+                          style={{ backgroundColor: getStationColor(selectedStartStation) }}
+                        ></span>
+                      )}
+                      {selectedStartStation?.name} ({selectedStartStation?.code})
+                    </p>
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground mb-2">To</h3>
-                    <p className="text-base font-medium">{selectedEndStation?.name} ({selectedEndStation?.code})</p>
+                    <p className="text-base font-medium flex items-center gap-2">
+                      {selectedEndStation && (
+                        <span 
+                          className="inline-block w-3 h-3 rounded-full" 
+                          style={{ backgroundColor: getStationColor(selectedEndStation) }}
+                        ></span>
+                      )}
+                      {selectedEndStation?.name} ({selectedEndStation?.code})
+                    </p>
                   </div>
                 </div>
                 
