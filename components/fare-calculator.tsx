@@ -20,7 +20,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type Station = {
   name: string;
@@ -32,6 +31,7 @@ type Station = {
 type MrtLine = {
   name: string;
   color: string;
+  fullName: string;
   stations: string[];
 };
 
@@ -74,11 +74,8 @@ export default function FareCalculator() {
       return stations;
     }
 
-    // Extract the line code from the line ID (e.g., "NS" from "NS")
-    const lineCode = lineId;
-    
-    // Filter stations that have this line code at the beginning of their station code
-    return stations.filter(station => station.code.startsWith(lineCode));
+    // Filter stations by checking if their station code starts with the line code
+    return stations.filter(station => station.code.startsWith(lineId));
   };
 
   // Filter stations based on selected line
@@ -107,8 +104,15 @@ export default function FareCalculator() {
         const stationsArray = Object.values(stationsData);
         setStations(Array.isArray(stationsArray) ? stationsArray as Station[] : []);
         
-        // Ensure lines is an array
-        setLines(Array.isArray(linesData) ? linesData : []);
+        // Convert lines object to array and ensure it's an array
+        const linesArray = Object.entries(linesData).map(([code, data]: [string, any]) => ({
+          name: code,
+          color: data.color,
+          fullName: data.name,
+          stations: data.stations
+        }));
+        setLines(Array.isArray(linesArray) ? linesArray : []);
+        
         setFareData(fareData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -259,7 +263,7 @@ export default function FareCalculator() {
                           className="inline-block w-3 h-3 rounded-full" 
                           style={{ backgroundColor: line.color }}
                         ></span>
-                        {line.name}
+                        {line.fullName}
                       </div>
                     </SelectItem>
                   )) : null}
@@ -327,7 +331,7 @@ export default function FareCalculator() {
                           className="inline-block w-3 h-3 rounded-full" 
                           style={{ backgroundColor: line.color }}
                         ></span>
-                        {line.name}
+                        {line.fullName}
                       </div>
                     </SelectItem>
                   )) : null}
@@ -417,20 +421,21 @@ export default function FareCalculator() {
                     <Label htmlFor="time-of-day" className="text-sm font-medium mb-2 block">
                       Time of Travel
                     </Label>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-4 w-4 p-0">
-                            <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
-                            <span className="sr-only">Time of travel info</span>
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="right" className="max-w-xs">
-                          <p><strong>Off-Peak:</strong> Before 7:45am on weekdays (excluding public holidays)</p>
-                          <p><strong>Peak:</strong> All other times</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <div className="relative group">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="h-5 w-5 p-0 rounded-full"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.alert("Off-Peak: Before 7:45am on weekdays (excluding public holidays)\nPeak: All other times");
+                        }}
+                      >
+                        <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                        <span className="sr-only">Time of travel info</span>
+                      </Button>
+                    </div>
                   </div>
                   <Select
                     value={timeOfDay}
