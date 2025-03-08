@@ -451,17 +451,20 @@ export default function FareCalculator() {
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
-              
-              <div className="flex items-end">
-                <Button 
-                  className="w-full" 
-                  size="lg"
-                  onClick={handleCalculateFare}
-                  disabled={!selectedStartStation || !selectedEndStation}
-                >
-                  Calculate Fare
-                </Button>
+                
+                <div>
+                  <div className="h-8 mb-2">
+                    {/* Empty space to match label height */}
+                  </div>
+                  <Button 
+                    className="w-full" 
+                    size="lg"
+                    onClick={handleCalculateFare}
+                    disabled={!selectedStartStation || !selectedEndStation}
+                  >
+                    Calculate Fare
+                  </Button>
+                </div>
               </div>
             </div>
             
