@@ -523,11 +523,6 @@ export default function FareCalculator() {
                     <p className="text-2xl font-bold">${fare.toFixed(2)}</p>
                   </div>
                 </div>
-
-                <div className="text-xs text-muted-foreground mt-4">
-                  <p>Disclaimer: Fare calculations are based on data from the Land Transport Authority (LTA) and data.gov.sg. 
-                  Actual fares may vary slightly from the calculated amounts. Distance calculations are approximate.</p>
-                </div>
               </div>
             </CardContent>
           </Card>

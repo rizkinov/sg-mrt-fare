@@ -15,8 +15,8 @@ export default function Home() {
         </div>
         
         <footer className="mt-12 text-center text-sm text-muted-foreground border-t pt-6">
-          <p>Fare data based on latest information as of December 2024</p>
-          <p className="mt-2">This is an unofficial tool and fares may vary. Please refer to official sources for the most accurate information.</p>
+          <p>Fare calculations are based on data from the Land Transport Authority (LTA) and data.gov.sg.</p>
+          <p className="mt-2">Actual fares may vary slightly from the calculated amounts. Distance calculations are approximate.</p>
         </footer>
       </div>
     </main>
