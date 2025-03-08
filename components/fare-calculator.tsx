@@ -427,7 +427,7 @@ export default function FareCalculator() {
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <div className="inline-flex">
+                          <div className="inline-flex items-center h-4">
                             <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
                           </div>
                         </TooltipTrigger>
@@ -453,7 +453,7 @@ export default function FareCalculator() {
                 </div>
                 
                 <div>
-                  <div className="h-8 mb-2">
+                  <div className="h-6 mb-2">
                     {/* Empty space to match label height */}
                   </div>
                   <Button 
