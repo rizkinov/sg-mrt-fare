@@ -130,22 +130,10 @@ export default function FareCalculator() {
 
   // Calculate distance between stations
   const calculateDistance = () => {
-    if (!selectedStartStation || !selectedEndStation || !stationDistances) {
+    if (!selectedStartStation || !selectedEndStation) {
       return null;
     }
 
-    // Check if we have a direct distance in the data
-    if (stationDistances[selectedStartStation.code] && 
-        stationDistances[selectedStartStation.code][selectedEndStation.code]) {
-      return stationDistances[selectedStartStation.code][selectedEndStation.code];
-    }
-
-    if (stationDistances[selectedEndStation.code] && 
-        stationDistances[selectedEndStation.code][selectedStartStation.code]) {
-      return stationDistances[selectedEndStation.code][selectedStartStation.code];
-    }
-
-    // If no direct distance, calculate using haversine formula
     const [lon1, lat1] = selectedStartStation.coordinates;
     const [lon2, lat2] = selectedEndStation.coordinates;
     
@@ -157,7 +145,14 @@ export default function FareCalculator() {
       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
       Math.sin(dLon/2) * Math.sin(dLon/2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    const distance = R * c;
+    
+    // Calculate the direct distance
+    const directDistance = R * c;
+    
+    // Apply a small adjustment factor to better match LTA's official distance calculations
+    // This accounts for the actual train route which is not always a straight line
+    const adjustmentFactor = 1.05; // 5% adjustment
+    const distance = directDistance * adjustmentFactor;
     
     return distance;
   };
