@@ -215,14 +215,22 @@ export default function FareCalculator() {
     if (!lines || !Array.isArray(lines)) {
       return "#888888"; // Default color if lines is not available or not an array
     }
-    const line = lines.find(l => l.name === station.line);
+    
+    // Extract the line code from the station code (e.g., "NS" from "NS1")
+    const stationLineCode = station.code.match(/^[A-Z]+/)?.[0];
+    
+    if (!stationLineCode) {
+      return "#888888";
+    }
+    
+    // Find the line that contains this station code
+    const line = lines.find(l => l.name === stationLineCode);
+    
     return line ? line.color : "#888888";
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">Singapore MRT Fare Calculator</h1>
-      
+    <div className="container mx-auto">
       <div className="grid gap-8 md:grid-cols-2">
         <Card className="md:h-full">
           <CardHeader className="pb-3">
