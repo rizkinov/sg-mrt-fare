@@ -21,15 +21,15 @@ type MrtLine = {
 };
 
 // Update the MapComponentProps interface to include initialZoom
-interface MapComponentProps {
+type MapComponentProps = {
   stations: Station[];
   lines: MrtLine[];
   selectedStartStation?: Station | null;
   selectedEndStation?: Station | null;
   onStationSelect?: (station: Station, selectionType: 'start' | 'end') => void;
-  selectionMode: 'start' | 'end' | null;
+  selectionMode?: 'browse' | 'start' | 'end';
   initialZoom?: number; // Add initialZoom prop
-}
+};
 
 // Component to update map view when props change
 function SetViewOnChange({ center, zoom, stations, selectedStartStation, selectedEndStation }: any) {
@@ -152,16 +152,11 @@ export function MapComponent({
     return () => clearTimeout(timer);
   }, []);
 
-  // Update the handleStationClick function to always select a station
-  const handleStationClick = (station: Station) => {
-    // Always select the station based on the current selection mode
-    if (onStationSelect && selectionMode) {
+  // Handle marker click
+  const handleMarkerClick = (station: Station) => {
+    if (onStationSelect && selectionMode && selectionMode !== 'browse') {
       onStationSelect(station, selectionMode);
-      return;
     }
-    
-    // If no selection mode (shouldn't happen now), just show the popup
-    setPopupInfo(station);
   };
 
   // Create custom marker icons
@@ -238,7 +233,7 @@ export function MapComponent({
               position={getStationCoordinates(station)}
               icon={createMarkerIcon(station)}
               eventHandlers={{
-                click: () => handleStationClick(station)
+                click: () => handleMarkerClick(station)
               }}
             >
               {popupInfo && popupInfo.code === station.code && (

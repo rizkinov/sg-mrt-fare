@@ -24,7 +24,8 @@ type MrtMapProps = {
   selectedStartStation?: Station | null;
   selectedEndStation?: Station | null;
   onStationSelect?: (station: Station, selectionType: 'start' | 'end') => void;
-  selectionMode?: 'start' | 'end' | null;
+  selectionMode?: 'browse' | 'start' | 'end';
+  setSelectionMode?: (mode: 'browse' | 'start' | 'end') => void;
 };
 
 // Dynamically import Leaflet components with SSR disabled
@@ -49,87 +50,80 @@ export function MrtMap({
   selectedStartStation,
   selectedEndStation,
   onStationSelect,
-  selectionMode: initialSelectionMode
+  selectionMode: initialSelectionMode,
+  setSelectionMode: externalSetSelectionMode
 }: MrtMapProps) {
-  // Initialize with initialSelectionMode or default to 'start'
-  const [selectionMode, setSelectionMode] = useState<'start' | 'end' | null>(initialSelectionMode || 'start');
+  // Initialize with initialSelectionMode or default to 'browse'
+  const [internalSelectionMode, setInternalSelectionMode] = useState<'browse' | 'start' | 'end'>(initialSelectionMode || 'browse');
   const [mapInitialized, setMapInitialized] = useState(false);
   
-  // Use a ref to track the previous initialSelectionMode value
+  // Keep track of the previous initialSelectionMode value
   const prevInitialSelectionModeRef = useRef(initialSelectionMode);
 
-  useEffect(() => {
-    // Initialize the map
-    setMapInitialized(true);
-  }, []);
-
-  // Always ensure we have a selection mode active (default to 'start' if null)
-  useEffect(() => {
-    if (selectionMode === null) {
-      setSelectionMode('start');
+  // Use the external setSelectionMode if provided, otherwise use the internal one
+  const handleSelectionModeChange = (mode: 'browse' | 'start' | 'end') => {
+    if (externalSetSelectionMode) {
+      externalSetSelectionMode(mode);
+    } else {
+      setInternalSelectionMode(mode);
     }
-  }, [selectionMode]);
-  
-  // Sync with parent component's selection mode
+  };
+
+  // Get the current selection mode (either from props or internal state)
+  const currentSelectionMode = initialSelectionMode || internalSelectionMode;
+
+  // Update internal state when props change
   useEffect(() => {
-    // Only update if initialSelectionMode has changed and is different from current selectionMode
-    if (
-      initialSelectionMode !== undefined && 
-      initialSelectionMode !== null && 
-      initialSelectionMode !== prevInitialSelectionModeRef.current
-    ) {
-      setSelectionMode(initialSelectionMode);
-      // Update the ref to the new value
+    if (initialSelectionMode !== prevInitialSelectionModeRef.current) {
+      setInternalSelectionMode(initialSelectionMode || 'browse');
       prevInitialSelectionModeRef.current = initialSelectionMode;
     }
   }, [initialSelectionMode]);
 
+  // Handle station selection
+  const handleStationSelect = (station: Station) => {
+    if (!onStationSelect) return;
+    
+    if (currentSelectionMode === 'start') {
+      onStationSelect(station, 'start');
+    } else if (currentSelectionMode === 'end') {
+      onStationSelect(station, 'end');
+    }
+  };
+
   return (
-    <div className="flex flex-col h-[60vh] space-y-4">
-      <div className="flex space-x-2">
+    <div className="flex flex-col h-full">
+      <div className="flex justify-center gap-2 mb-4">
         <Button
-          variant={selectionMode === 'start' ? "default" : "outline"}
-          onClick={() => setSelectionMode('start')}
-          className={selectionMode === 'start' ? "bg-green-600 hover:bg-green-700" : ""}
+          variant={currentSelectionMode === 'start' ? "default" : "outline"}
+          onClick={() => handleSelectionModeChange('start')}
+          className={currentSelectionMode === 'start' ? "bg-green-600 hover:bg-green-700" : ""}
         >
-          {selectedStartStation ? `Change Start (${selectedStartStation.code})` : "Select Start"}
+          {selectedStartStation ? "Change Start" : "Select Start"}
         </Button>
         <Button
-          variant={selectionMode === 'end' ? "default" : "outline"}
-          onClick={() => setSelectionMode('end')}
-          className={selectionMode === 'end' ? "bg-red-600 hover:bg-red-700" : ""}
+          variant={currentSelectionMode === 'end' ? "default" : "outline"}
+          onClick={() => handleSelectionModeChange('end')}
+          className={currentSelectionMode === 'end' ? "bg-red-600 hover:bg-red-700" : ""}
         >
-          {selectedEndStation ? `Change Destination (${selectedEndStation.code})` : "Select Destination"}
+          {selectedEndStation ? "Change Destination" : "Select Destination"}
+        </Button>
+        <Button
+          variant={currentSelectionMode === 'browse' ? "default" : "outline"}
+          onClick={() => handleSelectionModeChange('browse')}
+        >
+          Browse Map
         </Button>
       </div>
       
-      {/* Selection mode indicator */}
-      {selectionMode && (
-        <div className="bg-white dark:bg-gray-800 p-2 rounded-md shadow-sm border text-sm">
-          {selectionMode === 'start' ? (
-            <>
-              <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1.5"></span>
-              Select a starting station
-            </>
-          ) : (
-            <>
-              <span className="inline-block w-2 h-2 rounded-full bg-red-500 mr-1.5"></span>
-              Select a destination station
-            </>
-          )}
-        </div>
-      )}
-      
-      {/* Map container */}
-      <div className="flex-1 rounded-lg overflow-hidden border">
-        <MapComponent
-          stations={stations}
+      <div className="flex-1 relative">
+        <MapComponent 
+          stations={stations} 
           lines={lines}
           selectedStartStation={selectedStartStation}
           selectedEndStation={selectedEndStation}
-          onStationSelect={onStationSelect}
-          selectionMode={selectionMode}
-          initialZoom={12}
+          onStationSelect={handleStationSelect}
+          selectionMode={currentSelectionMode}
         />
       </div>
     </div>

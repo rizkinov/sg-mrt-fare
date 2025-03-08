@@ -1,0 +1,391 @@
+fare_type,applicable_time,distance,fare_per_ride
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),Up to 3.2 km,69
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),3.3 km - 4.2 km,79
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),4.3 km - 5.2 km,90
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),5.3 km - 6.2 km,100
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),6.3 km - 7.2 km,109
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),7.3 km - 8.2 km,116
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),8.3 km - 9.2 km,123
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),9.3 km - 10.2 km,127
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),10.3 km - 11.2 km,131
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),11.3 km - 12.2 km,135
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),12.3 km - 13.2 km,139
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),13.3 km - 14.2 km,143
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),14.3 km - 15.2 km,148
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),15.3 km - 16.2 km,152
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),16.3 km - 17.2 km,156
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),17.3 km - 18.2 km,160
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),18.3 km - 19.2 km,164
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),19.3 km - 20.2 km,167
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),20.3 km - 21.2 km,170
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),21.3 km - 22.2 km,173
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),22.3 km - 23.2 km,176
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),23.3 km - 24.2 km,178
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),24.3 km - 25.2 km,180
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),25.3 km - 26.2 km,182
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),26.3 km - 27.2 km,183
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),27.3 km - 28.2 km,184
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),28.3 km - 29.2 km,185
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),29.3 km - 30.2 km,186
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),30.3 km - 31.2 km,187
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),31.3 km - 32.2 km,188
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),32.3 km - 33.2 km,189
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),33.3 km - 34.2 km,190
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),34.3 km - 35.2 km,191
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),35.3 km - 36.2 km,192
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),36.3 km - 37.2 km,193
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),37.3 km - 38.2 km,194
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),38.3 km - 39.2 km,195
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),39.3 km - 40.2 km,196
+Adult card fare,Before 7.45am  (Weekdays excluding public holidays),Over 40.2 km,197
+Adult card fare,All other timings,Up to 3.2 km,119
+Adult card fare,All other timings,3.3 km - 4.2 km,129
+Adult card fare,All other timings,4.3 km - 5.2 km,140
+Adult card fare,All other timings,5.3 km - 6.2 km,150
+Adult card fare,All other timings,6.3 km - 7.2 km,159
+Adult card fare,All other timings,7.3 km - 8.2 km,166
+Adult card fare,All other timings,8.3 km - 9.2 km,173
+Adult card fare,All other timings,9.3 km - 10.2 km,177
+Adult card fare,All other timings,10.3 km - 11.2 km,181
+Adult card fare,All other timings,11.3 km - 12.2 km,185
+Adult card fare,All other timings,12.3 km - 13.2 km,189
+Adult card fare,All other timings,13.3 km - 14.2 km,193
+Adult card fare,All other timings,14.3 km - 15.2 km,198
+Adult card fare,All other timings,15.3 km - 16.2 km,202
+Adult card fare,All other timings,16.3 km - 17.2 km,206
+Adult card fare,All other timings,17.3 km - 18.2 km,210
+Adult card fare,All other timings,18.3 km - 19.2 km,214
+Adult card fare,All other timings,19.3 km - 20.2 km,217
+Adult card fare,All other timings,20.3 km - 21.2 km,220
+Adult card fare,All other timings,21.3 km - 22.2 km,223
+Adult card fare,All other timings,22.3 km - 23.2 km,226
+Adult card fare,All other timings,23.3 km - 24.2 km,228
+Adult card fare,All other timings,24.3 km - 25.2 km,230
+Adult card fare,All other timings,25.3 km - 26.2 km,232
+Adult card fare,All other timings,26.3 km - 27.2 km,233
+Adult card fare,All other timings,27.3 km - 28.2 km,234
+Adult card fare,All other timings,28.3 km - 29.2 km,235
+Adult card fare,All other timings,29.3 km - 30.2 km,236
+Adult card fare,All other timings,30.3 km - 31.2 km,237
+Adult card fare,All other timings,31.3 km - 32.2 km,238
+Adult card fare,All other timings,32.3 km - 33.2 km,239
+Adult card fare,All other timings,33.3 km - 34.2 km,240
+Adult card fare,All other timings,34.3 km - 35.2 km,241
+Adult card fare,All other timings,35.3 km - 36.2 km,242
+Adult card fare,All other timings,36.3 km - 37.2 km,243
+Adult card fare,All other timings,37.3 km - 38.2 km,244
+Adult card fare,All other timings,38.3 km - 39.2 km,245
+Adult card fare,All other timings,39.3 km - 40.2 km,246
+Adult card fare,All other timings,Over 40.2 km,247
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),Up to 3.2 km,19
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),3.3 km - 4.2 km,26
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),4.3 km - 5.2 km,34
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),5.3 km - 6.2 km,41
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),6.3 km - 7.2 km,47
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),7.3 km - 8.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),8.3 km - 9.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),9.3 km - 10.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),10.3 km - 11.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),11.3 km - 12.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),12.3 km - 13.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),13.3 km - 14.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),14.3 km - 15.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),15.3 km - 16.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),16.3 km - 17.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),17.3 km - 18.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),18.3 km - 19.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),19.3 km - 20.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),20.3 km - 21.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),21.3 km - 22.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),22.3 km - 23.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),23.3 km - 24.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),24.3 km - 25.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),25.3 km - 26.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),26.3 km - 27.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),27.3 km - 28.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),28.3 km - 29.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),29.3 km - 30.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),30.3 km - 31.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),31.3 km - 32.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),32.3 km - 33.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),33.3 km - 34.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),34.3 km - 35.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),35.3 km - 36.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),36.3 km - 37.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),37.3 km - 38.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),38.3 km - 39.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),39.3 km - 40.2 km,53
+Senior citizen card fare,Before 7.45am  (Weekdays excluding public holidays),Over 40.2 km,53
+Senior citizen card fare,All other timings,Up to 3.2 km,69
+Senior citizen card fare,All other timings,3.3 km - 4.2 km,76
+Senior citizen card fare,All other timings,4.3 km - 5.2 km,84
+Senior citizen card fare,All other timings,5.3 km - 6.2 km,91
+Senior citizen card fare,All other timings,6.3 km - 7.2 km,97
+Senior citizen card fare,All other timings,7.3 km - 8.2 km,103
+Senior citizen card fare,All other timings,8.3 km - 9.2 km,103
+Senior citizen card fare,All other timings,9.3 km - 10.2 km,103
+Senior citizen card fare,All other timings,10.3 km - 11.2 km,103
+Senior citizen card fare,All other timings,11.3 km - 12.2 km,103
+Senior citizen card fare,All other timings,12.3 km - 13.2 km,103
+Senior citizen card fare,All other timings,13.3 km - 14.2 km,103
+Senior citizen card fare,All other timings,14.3 km - 15.2 km,103
+Senior citizen card fare,All other timings,15.3 km - 16.2 km,103
+Senior citizen card fare,All other timings,16.3 km - 17.2 km,103
+Senior citizen card fare,All other timings,17.3 km - 18.2 km,103
+Senior citizen card fare,All other timings,18.3 km - 19.2 km,103
+Senior citizen card fare,All other timings,19.3 km - 20.2 km,103
+Senior citizen card fare,All other timings,20.3 km - 21.2 km,103
+Senior citizen card fare,All other timings,21.3 km - 22.2 km,103
+Senior citizen card fare,All other timings,22.3 km - 23.2 km,103
+Senior citizen card fare,All other timings,23.3 km - 24.2 km,103
+Senior citizen card fare,All other timings,24.3 km - 25.2 km,103
+Senior citizen card fare,All other timings,25.3 km - 26.2 km,103
+Senior citizen card fare,All other timings,26.3 km - 27.2 km,103
+Senior citizen card fare,All other timings,27.3 km - 28.2 km,103
+Senior citizen card fare,All other timings,28.3 km - 29.2 km,103
+Senior citizen card fare,All other timings,29.3 km - 30.2 km,103
+Senior citizen card fare,All other timings,30.3 km - 31.2 km,103
+Senior citizen card fare,All other timings,31.3 km - 32.2 km,103
+Senior citizen card fare,All other timings,32.3 km - 33.2 km,103
+Senior citizen card fare,All other timings,33.3 km - 34.2 km,103
+Senior citizen card fare,All other timings,34.3 km - 35.2 km,103
+Senior citizen card fare,All other timings,35.3 km - 36.2 km,103
+Senior citizen card fare,All other timings,36.3 km - 37.2 km,103
+Senior citizen card fare,All other timings,37.3 km - 38.2 km,103
+Senior citizen card fare,All other timings,38.3 km - 39.2 km,103
+Senior citizen card fare,All other timings,39.3 km - 40.2 km,103
+Senior citizen card fare,All other timings,Over 40.2 km,103
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),Up to 3.2 km,2
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),3.3 km - 4.2 km,7
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),4.3 km - 5.2 km,13
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),5.3 km - 6.2 km,18
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),6.3 km - 7.2 km,21
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),7.3 km - 8.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),8.3 km - 9.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),9.3 km - 10.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),10.3 km - 11.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),11.3 km - 12.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),12.3 km - 13.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),13.3 km - 14.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),14.3 km - 15.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),15.3 km - 16.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),16.3 km - 17.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),17.3 km - 18.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),18.3 km - 19.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),19.3 km - 20.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),20.3 km - 21.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),21.3 km - 22.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),22.3 km - 23.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),23.3 km - 24.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),24.3 km - 25.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),25.3 km - 26.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),26.3 km - 27.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),27.3 km - 28.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),28.3 km - 29.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),29.3 km - 30.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),30.3 km - 31.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),31.3 km - 32.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),32.3 km - 33.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),33.3 km - 34.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),34.3 km - 35.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),35.3 km - 36.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),36.3 km - 37.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),37.3 km - 38.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),38.3 km - 39.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),39.3 km - 40.2 km,24
+Student card fare,Before 7.45am  (Weekdays excluding public holidays),Over 40.2 km,24
+Student card fare,All other timings,Up to 3.2 km,52
+Student card fare,All other timings,3.3 km - 4.2 km,57
+Student card fare,All other timings,4.3 km - 5.2 km,63
+Student card fare,All other timings,5.3 km - 6.2 km,68
+Student card fare,All other timings,6.3 km - 7.2 km,71
+Student card fare,All other timings,7.3 km - 8.2 km,74
+Student card fare,All other timings,8.3 km - 9.2 km,74
+Student card fare,All other timings,9.3 km - 10.2 km,74
+Student card fare,All other timings,10.3 km - 11.2 km,74
+Student card fare,All other timings,11.3 km - 12.2 km,74
+Student card fare,All other timings,12.3 km - 13.2 km,74
+Student card fare,All other timings,13.3 km - 14.2 km,74
+Student card fare,All other timings,14.3 km - 15.2 km,74
+Student card fare,All other timings,15.3 km - 16.2 km,74
+Student card fare,All other timings,16.3 km - 17.2 km,74
+Student card fare,All other timings,17.3 km - 18.2 km,74
+Student card fare,All other timings,18.3 km - 19.2 km,74
+Student card fare,All other timings,19.3 km - 20.2 km,74
+Student card fare,All other timings,20.3 km - 21.2 km,74
+Student card fare,All other timings,21.3 km - 22.2 km,74
+Student card fare,All other timings,22.3 km - 23.2 km,74
+Student card fare,All other timings,23.3 km - 24.2 km,74
+Student card fare,All other timings,24.3 km - 25.2 km,74
+Student card fare,All other timings,25.3 km - 26.2 km,74
+Student card fare,All other timings,26.3 km - 27.2 km,74
+Student card fare,All other timings,27.3 km - 28.2 km,74
+Student card fare,All other timings,28.3 km - 29.2 km,74
+Student card fare,All other timings,29.3 km - 30.2 km,74
+Student card fare,All other timings,30.3 km - 31.2 km,74
+Student card fare,All other timings,31.3 km - 32.2 km,74
+Student card fare,All other timings,32.3 km - 33.2 km,74
+Student card fare,All other timings,33.3 km - 34.2 km,74
+Student card fare,All other timings,34.3 km - 35.2 km,74
+Student card fare,All other timings,35.3 km - 36.2 km,74
+Student card fare,All other timings,36.3 km - 37.2 km,74
+Student card fare,All other timings,37.3 km - 38.2 km,74
+Student card fare,All other timings,38.3 km - 39.2 km,74
+Student card fare,All other timings,39.3 km - 40.2 km,74
+Student card fare,All other timings,Over 40.2 km,74
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),Up to 3.2 km,28
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),3.3 km - 4.2 km,36
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),4.3 km - 5.2 km,45
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),5.3 km - 6.2 km,53
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),6.3 km - 7.2 km,60
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),7.3 km - 8.2 km,66
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),8.3 km - 9.2 km,72
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),9.3 km - 10.2 km,75
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),10.3 km - 11.2 km,78
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),11.3 km - 12.2 km,81
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),12.3 km - 13.2 km,84
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),13.3 km - 14.2 km,87
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),14.3 km - 15.2 km,90
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),15.3 km - 16.2 km,93
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),16.3 km - 17.2 km,96
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),17.3 km - 18.2 km,99
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),18.3 km - 19.2 km,102
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),19.3 km - 20.2 km,105
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),20.3 km - 21.2 km,108
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),21.3 km - 22.2 km,111
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),22.3 km - 23.2 km,114
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),23.3 km - 24.2 km,116
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),24.3 km - 25.2 km,117
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),25.3 km - 26.2 km,118
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),26.3 km - 27.2 km,119
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),27.3 km - 28.2 km,120
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),28.3 km - 29.2 km,121
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),29.3 km - 30.2 km,122
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),30.3 km - 31.2 km,123
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),31.3 km - 32.2 km,124
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),32.3 km - 33.2 km,125
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),33.3 km - 34.2 km,126
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),34.3 km - 35.2 km,127
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),35.3 km - 36.2 km,128
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),36.3 km - 37.2 km,129
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),37.3 km - 38.2 km,130
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),38.3 km - 39.2 km,131
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),39.3 km - 40.2 km,132
+Workfare transport concession card fare,Before 7.45am  (Weekdays excluding public holidays),Over 40.2 km,133
+Workfare transport concession card fare,All other timings,Up to 3.2 km,78
+Workfare transport concession card fare,All other timings,3.3 km - 4.2 km,86
+Workfare transport concession card fare,All other timings,4.3 km - 5.2 km,95
+Workfare transport concession card fare,All other timings,5.3 km - 6.2 km,103
+Workfare transport concession card fare,All other timings,6.3 km - 7.2 km,110
+Workfare transport concession card fare,All other timings,7.3 km - 8.2 km,116
+Workfare transport concession card fare,All other timings,8.3 km - 9.2 km,122
+Workfare transport concession card fare,All other timings,9.3 km - 10.2 km,125
+Workfare transport concession card fare,All other timings,10.3 km - 11.2 km,128
+Workfare transport concession card fare,All other timings,11.3 km - 12.2 km,131
+Workfare transport concession card fare,All other timings,12.3 km - 13.2 km,134
+Workfare transport concession card fare,All other timings,13.3 km - 14.2 km,137
+Workfare transport concession card fare,All other timings,14.3 km - 15.2 km,140
+Workfare transport concession card fare,All other timings,15.3 km - 16.2 km,143
+Workfare transport concession card fare,All other timings,16.3 km - 17.2 km,146
+Workfare transport concession card fare,All other timings,17.3 km - 18.2 km,149
+Workfare transport concession card fare,All other timings,18.3 km - 19.2 km,152
+Workfare transport concession card fare,All other timings,19.3 km - 20.2 km,155
+Workfare transport concession card fare,All other timings,20.3 km - 21.2 km,158
+Workfare transport concession card fare,All other timings,21.3 km - 22.2 km,161
+Workfare transport concession card fare,All other timings,22.3 km - 23.2 km,164
+Workfare transport concession card fare,All other timings,23.3 km - 24.2 km,166
+Workfare transport concession card fare,All other timings,24.3 km - 25.2 km,167
+Workfare transport concession card fare,All other timings,25.3 km - 26.2 km,168
+Workfare transport concession card fare,All other timings,26.3 km - 27.2 km,169
+Workfare transport concession card fare,All other timings,27.3 km - 28.2 km,170
+Workfare transport concession card fare,All other timings,28.3 km - 29.2 km,171
+Workfare transport concession card fare,All other timings,29.3 km - 30.2 km,172
+Workfare transport concession card fare,All other timings,30.3 km - 31.2 km,173
+Workfare transport concession card fare,All other timings,31.3 km - 32.2 km,174
+Workfare transport concession card fare,All other timings,32.3 km - 33.2 km,175
+Workfare transport concession card fare,All other timings,33.3 km - 34.2 km,176
+Workfare transport concession card fare,All other timings,34.3 km - 35.2 km,177
+Workfare transport concession card fare,All other timings,35.3 km - 36.2 km,178
+Workfare transport concession card fare,All other timings,36.3 km - 37.2 km,179
+Workfare transport concession card fare,All other timings,37.3 km - 38.2 km,180
+Workfare transport concession card fare,All other timings,38.3 km - 39.2 km,181
+Workfare transport concession card fare,All other timings,39.3 km - 40.2 km,182
+Workfare transport concession card fare,All other timings,Over 40.2 km,183
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),Up to 3.2 km,19
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),3.3 km - 4.2 km,26
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),4.3 km - 5.2 km,34
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),5.3 km - 6.2 km,41
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),6.3 km - 7.2 km,47
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),7.3 km - 8.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),8.3 km - 9.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),9.3 km - 10.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),10.3 km - 11.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),11.3 km - 12.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),12.3 km - 13.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),13.3 km - 14.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),14.3 km - 15.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),15.3 km - 16.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),16.3 km - 17.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),17.3 km - 18.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),18.3 km - 19.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),19.3 km - 20.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),20.3 km - 21.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),21.3 km - 22.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),22.3 km - 23.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),23.3 km - 24.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),24.3 km - 25.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),25.3 km - 26.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),26.3 km - 27.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),27.3 km - 28.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),28.3 km - 29.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),29.3 km - 30.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),30.3 km - 31.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),31.3 km - 32.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),32.3 km - 33.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),33.3 km - 34.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),34.3 km - 35.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),35.3 km - 36.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),36.3 km - 37.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),37.3 km - 38.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),38.3 km - 39.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),39.3 km - 40.2 km,53
+Persons with diabilities card fare,Before 7.45am  (Weekdays excluding public holidays),Over 40.2 km,53
+Persons with diabilities card fare,All other timings,Up to 3.2 km,69
+Persons with diabilities card fare,All other timings,3.3 km - 4.2 km,76
+Persons with diabilities card fare,All other timings,4.3 km - 5.2 km,84
+Persons with diabilities card fare,All other timings,5.3 km - 6.2 km,91
+Persons with diabilities card fare,All other timings,6.3 km - 7.2 km,97
+Persons with diabilities card fare,All other timings,7.3 km - 8.2 km,103
+Persons with diabilities card fare,All other timings,8.3 km - 9.2 km,103
+Persons with diabilities card fare,All other timings,9.3 km - 10.2 km,103
+Persons with diabilities card fare,All other timings,10.3 km - 11.2 km,103
+Persons with diabilities card fare,All other timings,11.3 km - 12.2 km,103
+Persons with diabilities card fare,All other timings,12.3 km - 13.2 km,103
+Persons with diabilities card fare,All other timings,13.3 km - 14.2 km,103
+Persons with diabilities card fare,All other timings,14.3 km - 15.2 km,103
+Persons with diabilities card fare,All other timings,15.3 km - 16.2 km,103
+Persons with diabilities card fare,All other timings,16.3 km - 17.2 km,103
+Persons with diabilities card fare,All other timings,17.3 km - 18.2 km,103
+Persons with diabilities card fare,All other timings,18.3 km - 19.2 km,103
+Persons with diabilities card fare,All other timings,19.3 km - 20.2 km,103
+Persons with diabilities card fare,All other timings,20.3 km - 21.2 km,103
+Persons with diabilities card fare,All other timings,21.3 km - 22.2 km,103
+Persons with diabilities card fare,All other timings,22.3 km - 23.2 km,103
+Persons with diabilities card fare,All other timings,23.3 km - 24.2 km,103
+Persons with diabilities card fare,All other timings,24.3 km - 25.2 km,103
+Persons with diabilities card fare,All other timings,25.3 km - 26.2 km,103
+Persons with diabilities card fare,All other timings,26.3 km - 27.2 km,103
+Persons with diabilities card fare,All other timings,27.3 km - 28.2 km,103
+Persons with diabilities card fare,All other timings,28.3 km - 29.2 km,103
+Persons with diabilities card fare,All other timings,29.3 km - 30.2 km,103
+Persons with diabilities card fare,All other timings,30.3 km - 31.2 km,103
+Persons with diabilities card fare,All other timings,31.3 km - 32.2 km,103
+Persons with diabilities card fare,All other timings,32.3 km - 33.2 km,103
+Persons with diabilities card fare,All other timings,33.3 km - 34.2 km,103
+Persons with diabilities card fare,All other timings,34.3 km - 35.2 km,103
+Persons with diabilities card fare,All other timings,35.3 km - 36.2 km,103
+Persons with diabilities card fare,All other timings,36.3 km - 37.2 km,103
+Persons with diabilities card fare,All other timings,37.3 km - 38.2 km,103
+Persons with diabilities card fare,All other timings,38.3 km - 39.2 km,103
+Persons with diabilities card fare,All other timings,39.3 km - 40.2 km,103
+Persons with diabilities card fare,All other timings,Over 40.2 km,103

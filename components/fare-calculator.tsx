@@ -20,6 +20,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type Station = {
   name: string;
@@ -36,97 +38,85 @@ type MrtLine = {
 
 type FareData = {
   [category: string]: {
-    [paymentMethod: string]: Record<string, number>;
+    [paymentMethod: string]: {
+      [timeOfDay: string]: Record<string, number>;
+    };
   };
 };
 
-type StationDistances = Record<string, Record<string, number>>;
+type FareType = "adult" | "student" | "senior";
+type PaymentMethod = "card" | "cash";
+type TimeOfDay = "peak" | "offPeak";
+type SelectionMode = 'browse' | 'start' | 'end';
 
 export default function FareCalculator() {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<MrtLine[]>([]);
   const [fareData, setFareData] = useState<FareData | null>(null);
-  const [stationDistances, setStationDistances] = useState<StationDistances | null>(null);
-  const [selectedStartStation, setSelectedStartStation] = useState<Station | null>(null);
-  const [selectedEndStation, setSelectedEndStation] = useState<Station | null>(null);
   const [selectedLine, setSelectedLine] = useState<string | null>(null);
   const [selectedDestLine, setSelectedDestLine] = useState<string | null>(null);
-  const [fareType, setFareType] = useState<"adult" | "student" | "senior">("adult");
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "cash">("card");
+  const [selectedStartStation, setSelectedStartStation] = useState<Station | null>(null);
+  const [selectedEndStation, setSelectedEndStation] = useState<Station | null>(null);
+  const [fareType, setFareType] = useState<FareType>("adult");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>("peak");
   const [fare, setFare] = useState<number | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectionMode, setSelectionMode] = useState<'start' | 'end' | null>(null);
   const [showMapDialog, setShowMapDialog] = useState(false);
+  const [mapSelectionMode, setMapSelectionMode] = useState<SelectionMode>('browse');
 
-  // Load data
+  // Get stations by line
+  const getStationsByLine = (lineId: string | null) => {
+    if (!stations || !Array.isArray(stations)) {
+      return [];
+    }
+
+    if (!lineId || lineId === 'all') {
+      return stations;
+    }
+
+    const line = lines.find(l => l.name === lineId);
+    if (!line) {
+      return stations;
+    }
+
+    return stations.filter(station => line.stations.includes(station.code));
+  };
+
+  // Filter stations based on selected line
+  const filteredStartStations = getStationsByLine(selectedLine);
+  const filteredDestStations = getStationsByLine(selectedDestLine);
+
   useEffect(() => {
+    // Fetch MRT stations data
     const fetchData = async () => {
       try {
-        // Fetch stations
-        const stationsRes = await fetch('/data/mrt_stations.json');
-        if (!stationsRes.ok) throw new Error('Failed to load station data');
-        const stationsData = await stationsRes.json();
-        // Convert object to array if needed
-        const stationsArray = Array.isArray(stationsData) 
-          ? stationsData 
-          : Object.values(stationsData);
-        setStations(stationsArray);
+        const [stationsResponse, linesResponse, fareResponse] = await Promise.all([
+          fetch('/data/mrt_stations.json'),
+          fetch('/data/mrt_lines.json'),
+          fetch('/data/lta_fare_data.json')
+        ]);
 
-        // Fetch lines
-        const linesRes = await fetch('/data/mrt_lines.json');
-        if (!linesRes.ok) throw new Error('Failed to load line data');
-        const linesData = await linesRes.json();
-        // Convert object to array if needed
-        const linesArray = Array.isArray(linesData) 
-          ? linesData 
-          : Object.values(linesData);
-        setLines(linesArray);
+        if (!stationsResponse.ok || !linesResponse.ok || !fareResponse.ok) {
+          throw new Error('Failed to fetch data');
+        }
 
-        // Fetch fare data
-        const fareRes = await fetch('/data/fare_data.json');
-        if (!fareRes.ok) throw new Error('Failed to load fare data');
-        const fareData = await fareRes.json();
+        const stationsData = await stationsResponse.json();
+        const linesData = await linesResponse.json();
+        const fareData = await fareResponse.json();
+
+        // Convert stations object to array
+        const stationsArray = Object.values(stationsData);
+        setStations(stationsArray as Station[]);
+        setLines(linesData);
         setFareData(fareData);
-
-        // Fetch station distances
-        const distancesRes = await fetch('/data/station_distances.json');
-        if (!distancesRes.ok) throw new Error('Failed to load distance data');
-        const distancesData = await distancesRes.json();
-        setStationDistances(distancesData);
-
-        setLoading(false);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
   }, []);
-
-  // Fix the getStationsByLine function to properly filter stations by line
-  const getStationsByLine = (lineId: string | null) => {
-    if (!stations || !Array.isArray(stations)) return [];
-    if (!lineId || lineId === 'all') return stations;
-    
-    const line = lines.find(l => l.name === lineId);
-    if (!line) return stations;
-    
-    // Filter stations that belong to the selected line
-    return stations.filter(station => {
-      // Extract the line code from the station code (e.g., "NS" from "NS1")
-      const stationLineCode = station.code.match(/^[A-Z]+/)?.[0];
-      // Check if this line code matches any of our lines
-      const matchingLine = lines.find(l => l.stations.includes(station.code));
-      return matchingLine && matchingLine.name === lineId;
-    });
-  };
-
-  // Get filtered stations for starting and destination
-  const filteredStartStations = getStationsByLine(selectedLine);
-  const filteredDestStations = getStationsByLine(selectedDestLine);
 
   // Calculate distance between stations
   const calculateDistance = () => {
@@ -149,9 +139,9 @@ export default function FareCalculator() {
     // Calculate the direct distance
     const directDistance = R * c;
     
-    // Apply a small adjustment factor to better match LTA's official distance calculations
+    // Apply a larger adjustment factor to better match LTA's official distance calculations
     // This accounts for the actual train route which is not always a straight line
-    const adjustmentFactor = 1.05; // 5% adjustment
+    const adjustmentFactor = 1.15; // 15% adjustment
     const distance = directDistance * adjustmentFactor;
     
     return distance;
@@ -169,7 +159,7 @@ export default function FareCalculator() {
     setDistance(distance);
 
     // Find the appropriate fare tier based on distance
-    const fareTiers = fareData[fareType][paymentMethod];
+    const fareTiers = fareData[fareType][paymentMethod][timeOfDay];
     let fare = 0;
 
     // Sort the distance tiers and find the appropriate one
@@ -196,58 +186,38 @@ export default function FareCalculator() {
   const handleStationSelect = (station: Station, type: 'start' | 'end') => {
     if (type === 'start') {
       setSelectedStartStation(station);
-      // Automatically switch to destination selection mode after selecting start
-      setSelectionMode('end');
+      // Automatically switch to end selection mode after selecting start
+      setMapSelectionMode('end');
     } else {
       setSelectedEndStation(station);
-      // Return to start selection mode after selecting destination
-      setSelectionMode('start');
+      // Return to browse mode after selecting end station
+      setMapSelectionMode('browse');
     }
-    
-    // Don't close the map dialog
-    // setShowMapDialog(false); - removed this line
   };
 
   // Handle calculate fare button click
   const handleCalculateFare = () => {
-    const fare = calculateFare();
-    setFare(fare);
+    const calculatedFare = calculateFare();
+    if (calculatedFare !== null) {
+      setFare(calculatedFare);
+    }
   };
 
+  // Get station name with code
   const getStationName = (station: Station | null) => {
-    if (!station) return "Select a station";
+    if (!station) return "Not selected";
     return `${station.name} (${station.code})`;
   };
 
-  // Debug information
-  console.log('Stations:', stations);
-  console.log('Lines:', lines);
-  console.log('Filtered Stations:', filteredStartStations);
-
-  // Fix the getStationColor function to correctly match station codes to line colors
+  // Get station color based on line
   const getStationColor = (station: Station): string => {
-    // Extract the line code from the station code (e.g., "NS" from "NS1")
-    const stationLineCode = station.code.match(/^[A-Z]+/)?.[0];
-    
-    // Find the line that contains this station code
-    const line = lines.find(l => l.stations.includes(station.code));
-    
-    // Return the color of the matching line, or a default color if no match
-    return line ? line.color : '#888';
+    const line = lines.find(l => l.name === station.line);
+    return line ? line.color : "#888888";
   };
 
   return (
-    <div className="space-y-8">
-      {loading ? (
-        <div className="text-center p-6 bg-muted/30 rounded-lg">
-          <div className="animate-pulse">Loading fare data...</div>
-        </div>
-      ) : error ? (
-        <div className="text-destructive p-6 border border-destructive/30 bg-destructive/10 rounded-lg">
-          <p className="font-medium">Error loading data</p>
-          <p className="text-sm mt-1">{error}</p>
-        </div>
-      ) : null}
+    <div className="container mx-auto py-8 px-4">
+      <h1 className="text-3xl font-bold mb-6">Singapore MRT Fare Calculator</h1>
       
       <div className="grid gap-8 md:grid-cols-2">
         <Card className="md:h-full">
@@ -400,7 +370,7 @@ export default function FareCalculator() {
                   </Label>
                   <Select
                     value={fareType}
-                    onValueChange={(value) => setFareType(value as "adult" | "student" | "senior")}
+                    onValueChange={(value) => setFareType(value as FareType)}
                   >
                     <SelectTrigger id="fare-type" className="w-full">
                       <SelectValue placeholder="Select passenger type" />
@@ -419,7 +389,7 @@ export default function FareCalculator() {
                   </Label>
                   <Select
                     value={paymentMethod}
-                    onValueChange={(value) => setPaymentMethod(value as "card" | "cash")}
+                    onValueChange={(value) => setPaymentMethod(value as PaymentMethod)}
                   >
                     <SelectTrigger id="payment-method" className="w-full">
                       <SelectValue placeholder="Select payment method" />
@@ -427,6 +397,37 @@ export default function FareCalculator() {
                     <SelectContent>
                       <SelectItem value="card">Card</SelectItem>
                       <SelectItem value="cash">Cash</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-1">
+                    <Label htmlFor="time-of-day" className="text-sm font-medium mb-2 block">
+                      Time of Travel
+                    </Label>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-xs">
+                          <p><strong>Off-Peak:</strong> Before 7:45am on weekdays (excluding public holidays)</p>
+                          <p><strong>Peak:</strong> All other times</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                  <Select
+                    value={timeOfDay}
+                    onValueChange={(value) => setTimeOfDay(value as TimeOfDay)}
+                  >
+                    <SelectTrigger id="time-of-day" className="w-full">
+                      <SelectValue placeholder="Select time of travel" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="peak">Peak Hours</SelectItem>
+                      <SelectItem value="offPeak">Off-Peak Hours</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -445,7 +446,10 @@ export default function FareCalculator() {
                 <Button 
                   variant="outline" 
                   className="w-full mt-4" 
-                  onClick={() => setShowMapDialog(true)}
+                  onClick={() => {
+                    setShowMapDialog(true);
+                    setMapSelectionMode('browse');
+                  }}
                 >
                   Browse MRT Map
                 </Button>
@@ -495,67 +499,85 @@ export default function FareCalculator() {
                     <p className="text-2xl font-bold">${fare.toFixed(2)}</p>
                   </div>
                 </div>
+
+                <div className="text-xs text-muted-foreground mt-4">
+                  <p>Disclaimer: Fare calculations are based on data from the Land Transport Authority (LTA) and data.gov.sg. 
+                  Actual fares may vary slightly from the calculated amounts. Distance calculations are approximate.</p>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
       )}
 
-      <div className="flex justify-center mt-6">
-        <Dialog open={showMapDialog} onOpenChange={setShowMapDialog}>
-          <DialogTrigger asChild>
-            <Button variant="outline" className="px-6">
-              View MRT Map
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-hidden flex flex-col">
-            <DialogHeader>
-              <DialogTitle>Singapore MRT Map</DialogTitle>
-            </DialogHeader>
-            <div className="flex-1 min-h-[500px] overflow-hidden">
-              <MrtMap 
-                stations={stations} 
-                lines={lines}
-                selectedStartStation={selectedStartStation}
-                selectedEndStation={selectedEndStation}
-                onStationSelect={handleStationSelect}
-                selectionMode={selectionMode}
-              />
-            </div>
-            <div className="p-4 border-t mt-2 flex flex-col gap-3">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm font-medium mb-1">Starting Station:</p>
-                  <p className="text-base">{selectedStartStation ? selectedStartStation.name : 'Not selected'}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium mb-1">Destination Station:</p>
-                  <p className="text-base">{selectedEndStation ? selectedEndStation.name : 'Not selected'}</p>
-                </div>
+      <Dialog open={showMapDialog} onOpenChange={setShowMapDialog}>
+        <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Singapore MRT Map</DialogTitle>
+          </DialogHeader>
+          
+          <div className="flex-1 overflow-hidden relative">
+            <MrtMap 
+              stations={stations} 
+              lines={lines} 
+              selectedStartStation={selectedStartStation}
+              selectedEndStation={selectedEndStation}
+              onStationSelect={handleStationSelect}
+              selectionMode={mapSelectionMode}
+              setSelectionMode={setMapSelectionMode}
+            />
+            
+            {mapSelectionMode !== 'browse' && (
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-background/90 px-4 py-2 rounded-full shadow-md border">
+                <p className="text-sm font-medium flex items-center gap-2">
+                  {mapSelectionMode === 'start' ? (
+                    <>
+                      <span className="inline-block w-3 h-3 rounded-full bg-green-600"></span>
+                      Select starting station
+                    </>
+                  ) : (
+                    <>
+                      <span className="inline-block w-3 h-3 rounded-full bg-destructive"></span>
+                      Select destination station
+                    </>
+                  )}
+                </p>
               </div>
-              <div className="flex justify-end gap-2 mt-2">
-                <Button 
-                  variant="outline" 
-                  onClick={() => setShowMapDialog(false)}
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  onClick={() => {
-                    setShowMapDialog(false);
-                    if (selectedStartStation && selectedEndStation) {
-                      handleCalculateFare();
-                    }
-                  }}
-                  disabled={!selectedStartStation || !selectedEndStation}
-                >
-                  Calculate Fare
-                </Button>
-              </div>
+            )}
+          </div>
+          
+          <div className="mt-4 border-t pt-4 flex justify-between items-center">
+            <div className="flex-1">
+              {selectedStartStation && (
+                <p className="text-sm">
+                  <span className="text-muted-foreground">From:</span> {selectedStartStation.name} ({selectedStartStation.code})
+                </p>
+              )}
+              {selectedEndStation && (
+                <p className="text-sm">
+                  <span className="text-muted-foreground">To:</span> {selectedEndStation.name} ({selectedEndStation.code})
+                </p>
+              )}
             </div>
-          </DialogContent>
-        </Dialog>
-      </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => setShowMapDialog(false)}>
+                Cancel
+              </Button>
+              <Button 
+                onClick={() => {
+                  setShowMapDialog(false);
+                  if (selectedStartStation && selectedEndStation) {
+                    handleCalculateFare();
+                  }
+                }}
+                disabled={!selectedStartStation || !selectedEndStation}
+              >
+                Calculate Fare
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 } 
