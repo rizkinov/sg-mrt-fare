@@ -74,12 +74,11 @@ export default function FareCalculator() {
       return stations;
     }
 
-    const line = lines.find(l => l.name === lineId);
-    if (!line) {
-      return stations;
-    }
-
-    return stations.filter(station => line.stations.includes(station.code));
+    // Extract the line code from the line ID (e.g., "NS" from "NS")
+    const lineCode = lineId;
+    
+    // Filter stations that have this line code at the beginning of their station code
+    return stations.filter(station => station.code.startsWith(lineCode));
   };
 
   // Filter stations based on selected line
@@ -420,10 +419,13 @@ export default function FareCalculator() {
                     </Label>
                     <TooltipProvider>
                       <Tooltip>
-                        <TooltipTrigger>
-                          <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                        <TooltipTrigger asChild>
+                          <Button variant="ghost" size="icon" className="h-4 w-4 p-0">
+                            <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                            <span className="sr-only">Time of travel info</span>
+                          </Button>
                         </TooltipTrigger>
-                        <TooltipContent className="max-w-xs">
+                        <TooltipContent side="right" className="max-w-xs">
                           <p><strong>Off-Peak:</strong> Before 7:45am on weekdays (excluding public holidays)</p>
                           <p><strong>Peak:</strong> All other times</p>
                         </TooltipContent>
