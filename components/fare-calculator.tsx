@@ -234,16 +234,16 @@ export default function FareCalculator() {
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="grid gap-8 md:grid-cols-2">
+    <div>
+      <div className="grid gap-4 sm:gap-8 md:grid-cols-2">
         <Card className="md:h-full">
-          <CardHeader className="pb-3">
+          <CardHeader className="pb-2 sm:pb-3">
             <CardTitle className="text-xl flex items-center gap-2">
               <span className="inline-block w-3 h-3 rounded-full bg-green-600"></span>
               Starting Station
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 sm:space-y-6">
             <div>
               <Label htmlFor="line-filter" className="text-sm font-medium mb-2 block">
                 Filter by Line
@@ -305,13 +305,13 @@ export default function FareCalculator() {
         </Card>
 
         <Card className="md:h-full">
-          <CardHeader className="pb-3">
+          <CardHeader className="pb-2 sm:pb-3">
             <CardTitle className="text-xl flex items-center gap-2">
               <span className="inline-block w-3 h-3 rounded-full bg-destructive"></span>
               Destination Station
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 sm:space-y-6">
             <div>
               <Label htmlFor="dest-line-filter" className="text-sm font-medium mb-2 block">
                 Filter by Line
@@ -372,13 +372,13 @@ export default function FareCalculator() {
         </Card>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-4 sm:mt-8">
         <Card>
-          <CardHeader className="pb-3">
+          <CardHeader className="pb-2 sm:pb-3">
             <CardTitle className="text-xl">Fare Options</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="fare-type" className="text-sm font-medium mb-2 block">
