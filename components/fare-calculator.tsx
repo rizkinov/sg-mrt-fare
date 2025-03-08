@@ -453,7 +453,7 @@ export default function FareCalculator() {
                 </div>
                 
                 <div>
-                  <div className="h-6 mb-2">
+                  <div className="h-5 mb-2">
                     {/* Empty space to match label height */}
                   </div>
                   <Button 
