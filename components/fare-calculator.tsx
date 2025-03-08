@@ -17,7 +17,6 @@ const MrtMap = dynamic(() => import('@/components/mrt-map').then(mod => mod.MrtM
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
@@ -105,10 +104,12 @@ export default function FareCalculator() {
         const linesData = await linesResponse.json();
         const fareData = await fareResponse.json();
 
-        // Convert stations object to array
+        // Convert stations object to array and ensure it's an array
         const stationsArray = Object.values(stationsData);
-        setStations(stationsArray as Station[]);
-        setLines(linesData);
+        setStations(Array.isArray(stationsArray) ? stationsArray as Station[] : []);
+        
+        // Ensure lines is an array
+        setLines(Array.isArray(linesData) ? linesData : []);
         setFareData(fareData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -211,6 +212,9 @@ export default function FareCalculator() {
 
   // Get station color based on line
   const getStationColor = (station: Station): string => {
+    if (!lines || !Array.isArray(lines)) {
+      return "#888888"; // Default color if lines is not available or not an array
+    }
     const line = lines.find(l => l.name === station.line);
     return line ? line.color : "#888888";
   };
