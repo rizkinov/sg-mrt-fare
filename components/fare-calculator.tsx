@@ -457,8 +457,7 @@ export default function FareCalculator() {
                     {/* Empty space to match label height */}
                   </div>
                   <Button 
-                    className="w-full" 
-                    size="lg"
+                    className="w-full h-10" 
                     onClick={handleCalculateFare}
                     disabled={!selectedStartStation || !selectedEndStation}
                   >
