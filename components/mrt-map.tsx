@@ -53,15 +53,15 @@ export function MrtMap({
   selectionMode: initialSelectionMode,
   setSelectionMode: externalSetSelectionMode
 }: MrtMapProps) {
-  // Initialize with initialSelectionMode or default to 'browse'
-  const [internalSelectionMode, setInternalSelectionMode] = useState<'browse' | 'start' | 'end'>(initialSelectionMode || 'browse');
+  // Initialize with initialSelectionMode or default to 'start'
+  const [internalSelectionMode, setInternalSelectionMode] = useState<'start' | 'end'>(initialSelectionMode === 'end' ? 'end' : 'start');
   const [mapInitialized, setMapInitialized] = useState(false);
   
   // Keep track of the previous initialSelectionMode value
   const prevInitialSelectionModeRef = useRef(initialSelectionMode);
 
   // Use the external setSelectionMode if provided, otherwise use the internal one
-  const handleSelectionModeChange = (mode: 'browse' | 'start' | 'end') => {
+  const handleSelectionModeChange = (mode: 'start' | 'end') => {
     if (externalSetSelectionMode) {
       externalSetSelectionMode(mode);
     } else {
@@ -70,12 +70,12 @@ export function MrtMap({
   };
 
   // Get the current selection mode (either from props or internal state)
-  const currentSelectionMode = initialSelectionMode || internalSelectionMode;
+  const currentSelectionMode = initialSelectionMode === 'end' ? 'end' : 'start';
 
   // Update internal state when props change
   useEffect(() => {
     if (initialSelectionMode !== prevInitialSelectionModeRef.current) {
-      setInternalSelectionMode(initialSelectionMode || 'browse');
+      setInternalSelectionMode(initialSelectionMode === 'end' ? 'end' : 'start');
       prevInitialSelectionModeRef.current = initialSelectionMode;
     }
   }, [initialSelectionMode]);
@@ -107,12 +107,6 @@ export function MrtMap({
           className={currentSelectionMode === 'end' ? "bg-red-600 hover:bg-red-700" : ""}
         >
           {selectedEndStation ? "Change Destination" : "Select Destination"}
-        </Button>
-        <Button
-          variant={currentSelectionMode === 'browse' ? "default" : "outline"}
-          onClick={() => handleSelectionModeChange('browse')}
-        >
-          Browse Map
         </Button>
       </div>
       

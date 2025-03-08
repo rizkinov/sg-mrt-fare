@@ -195,8 +195,8 @@ export default function FareCalculator() {
       setMapSelectionMode('end');
     } else {
       setSelectedEndStation(station);
-      // Return to browse mode after selecting end station
-      setMapSelectionMode('browse');
+      // Return to start mode after selecting end station
+      setMapSelectionMode('start');
     }
   };
 
@@ -427,7 +427,7 @@ export default function FareCalculator() {
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <div className="cursor-help">
+                          <div className="inline-flex">
                             <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
                           </div>
                         </TooltipTrigger>
@@ -451,9 +451,11 @@ export default function FareCalculator() {
                     </SelectContent>
                   </Select>
                 </div>
-                
+              </div>
+              
+              <div className="flex items-end">
                 <Button 
-                  className="w-full mt-auto" 
+                  className="w-full" 
                   size="lg"
                   onClick={handleCalculateFare}
                   disabled={!selectedStartStation || !selectedEndStation}
@@ -469,7 +471,7 @@ export default function FareCalculator() {
                 className="w-full" 
                 onClick={() => {
                   setShowMapDialog(true);
-                  setMapSelectionMode('browse');
+                  setMapSelectionMode('start');
                 }}
               >
                 Browse MRT Map
@@ -546,24 +548,6 @@ export default function FareCalculator() {
               selectionMode={mapSelectionMode}
               setSelectionMode={setMapSelectionMode}
             />
-            
-            {mapSelectionMode !== 'browse' && (
-              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-background/90 px-4 py-2 rounded-full shadow-md border">
-                <p className="text-sm font-medium flex items-center gap-2">
-                  {mapSelectionMode === 'start' ? (
-                    <>
-                      <span className="inline-block w-3 h-3 rounded-full bg-green-600"></span>
-                      Select starting station
-                    </>
-                  ) : (
-                    <>
-                      <span className="inline-block w-3 h-3 rounded-full bg-destructive"></span>
-                      Select destination station
-                    </>
-                  )}
-                </p>
-              </div>
-            )}
           </div>
           
           <div className="mt-4 border-t pt-4 flex justify-between items-center">
