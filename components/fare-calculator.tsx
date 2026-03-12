@@ -44,6 +44,8 @@ type FareData = {
   };
 };
 
+type StationDistances = Record<string, Record<string, number>>;
+
 type FareType = "adult" | "student" | "senior";
 type PaymentMethod = "card" | "cash";
 type TimeOfDay = "peak" | "offPeak";
@@ -53,6 +55,7 @@ export default function FareCalculator() {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<MrtLine[]>([]);
   const [fareData, setFareData] = useState<FareData | null>(null);
+  const [stationDistances, setStationDistances] = useState<StationDistances | null>(null);
   const [selectedLine, setSelectedLine] = useState<string | null>(null);
   const [selectedDestLine, setSelectedDestLine] = useState<string | null>(null);
   const [selectedStartStation, setSelectedStartStation] = useState<Station | null>(null);
@@ -87,19 +90,22 @@ export default function FareCalculator() {
     // Fetch MRT stations data
     const fetchData = async () => {
       try {
-        const [stationsResponse, linesResponse, fareResponse] = await Promise.all([
+        const [stationsResponse, linesResponse, fareResponse, distancesResponse] = await Promise.all([
           fetch('/data/mrt_stations.json'),
           fetch('/data/mrt_lines.json'),
-          fetch('/data/lta_fare_data.json')
+          fetch('/data/lta_fare_data.json'),
+          fetch('/data/station_distances.json')
         ]);
 
-        if (!stationsResponse.ok || !linesResponse.ok || !fareResponse.ok) {
+        if (!stationsResponse.ok || !linesResponse.ok || !fareResponse.ok || !distancesResponse.ok) {
           throw new Error('Failed to fetch data');
         }
 
         const stationsData = await stationsResponse.json();
         const linesData = await linesResponse.json();
         const fareData = await fareResponse.json();
+        const distancesData = await distancesResponse.json();
+        setStationDistances(distancesData);
 
         // Convert stations object to array and ensure it's an array
         const stationsArray = Object.values(stationsData);
@@ -123,33 +129,45 @@ export default function FareCalculator() {
     fetchData();
   }, []);
 
-  // Calculate distance between stations
+  // Calculate shortest path distance between stations using Dijkstra's algorithm
+  // This routes through the actual rail network instead of using straight-line distance
   const calculateDistance = () => {
-    if (!selectedStartStation || !selectedEndStation) {
+    if (!selectedStartStation || !selectedEndStation || !stationDistances) {
       return null;
     }
 
-    const [lon1, lat1] = selectedStartStation.coordinates;
-    const [lon2, lat2] = selectedEndStation.coordinates;
-    
-    const R = 6371; // Radius of the Earth in km
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    
-    // Calculate the direct distance
-    const directDistance = R * c;
-    
-    // Apply a larger adjustment factor to better match LTA's official distance calculations
-    // This accounts for the actual train route which is not always a straight line
-    const adjustmentFactor = 1.15; // 15% adjustment
-    const distance = directDistance * adjustmentFactor;
-    
-    return distance;
+    const start = selectedStartStation.code;
+    const end = selectedEndStation.code;
+
+    if (start === end) return 0;
+
+    const dist: Record<string, number> = {};
+    const visited = new Set<string>();
+    const pq: [number, string][] = [[0, start]];
+    dist[start] = 0;
+
+    while (pq.length > 0) {
+      pq.sort((a, b) => a[0] - b[0]);
+      const [d, u] = pq.shift()!;
+
+      if (visited.has(u)) continue;
+      visited.add(u);
+
+      if (u === end) break;
+
+      const neighbors = stationDistances[u];
+      if (!neighbors) continue;
+
+      for (const [v, w] of Object.entries(neighbors)) {
+        const newDist = d + w;
+        if (dist[v] === undefined || newDist < dist[v]) {
+          dist[v] = newDist;
+          pq.push([newDist, v]);
+        }
+      }
+    }
+
+    return dist[end] ?? null;
   };
 
   // Calculate fare based on distance
