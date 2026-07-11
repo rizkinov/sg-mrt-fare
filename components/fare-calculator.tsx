@@ -47,7 +47,8 @@ type FareData = {
 type StationDistances = Record<string, Record<string, number>>;
 
 type FareType = "adult" | "student" | "senior";
-type PaymentMethod = "card" | "cash";
+// Standard (cash) single-trip tickets were discontinued in March 2022 — all fares are card (SimplyGo)
+type PaymentMethod = "card";
 type TimeOfDay = "peak" | "offPeak";
 type SelectionMode = 'browse' | 'start' | 'end';
 
@@ -61,7 +62,7 @@ export default function FareCalculator() {
   const [selectedStartStation, setSelectedStartStation] = useState<Station | null>(null);
   const [selectedEndStation, setSelectedEndStation] = useState<Station | null>(null);
   const [fareType, setFareType] = useState<FareType>("adult");
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
+  const paymentMethod: PaymentMethod = "card";
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>("peak");
   const [fare, setFare] = useState<number | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
@@ -418,21 +419,26 @@ export default function FareCalculator() {
                 </div>
                 
                 <div>
-                  <Label htmlFor="payment-method" className="text-sm font-medium mb-2 block">
-                    Payment Method
-                  </Label>
-                  <Select
-                    value={paymentMethod}
-                    onValueChange={(value) => setPaymentMethod(value as PaymentMethod)}
-                  >
-                    <SelectTrigger id="payment-method" className="w-full">
-                      <SelectValue placeholder="Select payment method" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="card">Card</SelectItem>
-                      <SelectItem value="cash">Cash</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <div className="flex items-center gap-1">
+                    <Label className="text-sm font-medium mb-2 block">
+                      Payment
+                    </Label>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="inline-flex items-center h-4">
+                            <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent side="right" className="max-w-xs">
+                          <p>Standard (cash) single-trip tickets were discontinued in March 2022. All fares are paid by card or mobile wallet via SimplyGo.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                  <div className="flex h-10 w-full items-center rounded-md border border-input bg-muted/50 px-3 text-sm">
+                    Card / SimplyGo
+                  </div>
                 </div>
               </div>
               
@@ -539,7 +545,7 @@ export default function FareCalculator() {
                 <div className="grid gap-4 md:grid-cols-3">
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground mb-2">Distance</h3>
-                    <p className="text-base font-medium">{distance?.toFixed(1)} km</p>
+                    <p className="text-base font-medium tabular-nums">{distance?.toFixed(1)} km</p>
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground mb-2">Passenger</h3>
@@ -547,14 +553,14 @@ export default function FareCalculator() {
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground mb-2">Payment</h3>
-                    <p className="text-base font-medium">{paymentMethod === 'card' ? 'Card' : 'Cash'}</p>
+                    <p className="text-base font-medium">Card / SimplyGo</p>
                   </div>
                 </div>
                 
                 <div className="pt-4 border-t">
                   <div className="flex justify-between items-center">
                     <h3 className="text-base font-medium">Total Fare</h3>
-                    <p className="text-2xl font-bold">${fare.toFixed(2)}</p>
+                    <p className="text-3xl font-semibold tabular-nums tracking-tight">${fare.toFixed(2)}</p>
                   </div>
                 </div>
               </div>

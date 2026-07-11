@@ -16,24 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            console.log('CSS Debug:');
-            setTimeout(() => {
-              const styles = Array.from(document.styleSheets);
-              console.log('Total stylesheets:', styles.length);
-              styles.forEach((sheet, i) => {
-                try {
-                  console.log(\`Sheet \${i}: \${sheet.href || 'inline'}\`);
-                } catch (e) {
-                  console.log(\`Sheet \${i}: [CORS protected]\`);
-                }
-              });
-            }, 1000);
-          `
-        }} />
-      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

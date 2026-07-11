@@ -8,6 +8,8 @@ A web application that calculates MRT fares between stations in Singapore's Mass
 - Station selection by clicking on the map or using dropdown menus
 - Filter stations by MRT line
 - Automatic fare calculation based on distance between stations
+- Card (SimplyGo) fares effective 27 December 2025 — standard/cash single-trip tickets were discontinued in March 2022
+- Station network as of 12 July 2026, including Circle Line Stage 6
 - Responsive design for mobile and desktop
 
 ## Technologies Used
