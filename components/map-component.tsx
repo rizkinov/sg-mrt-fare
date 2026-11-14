@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
+import { Basemap } from "@/components/basemap";
+import { MAP_MAX_ZOOM } from "@/lib/basemap";
 
 // Define types
 type Station = {
@@ -211,8 +213,8 @@ export function MapComponent({
           center={mapCenter}
           zoom={initialZoom || 12}
           style={{ width: '100%', height: '100%', minHeight: '350px' }}
+          maxZoom={MAP_MAX_ZOOM}
           zoomControl={false}
-          attributionControl={false}
           scrollWheelZoom={true}
           doubleClickZoom={true}
           dragging={true}
@@ -220,10 +222,7 @@ export function MapComponent({
           touchZoom={true}
         >
           <ZoomControl position="topright" />
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          />
+          <Basemap />
           <SetViewOnChange center={mapCenter} zoom={initialZoom || 12} stations={stations} selectedStartStation={selectedStartStation} selectedEndStation={selectedEndStation} />
           
           {/* Station markers */}
@@ -250,9 +249,9 @@ export function MapComponent({
             </Marker>
           ))}
           
-          {/* Selection mode indicator */}
+          {/* Selection mode indicator. On narrow maps it sits above the attribution line, which must stay readable. */}
           {selectionMode && (
-            <div className="absolute bottom-4 left-4 z-[1000] bg-white dark:bg-gray-800 p-3 rounded-md shadow-md">
+            <div className="absolute bottom-12 md:bottom-4 left-4 z-[1000] bg-white dark:bg-gray-800 p-3 rounded-md shadow-md">
               <p className="text-sm font-medium">
                 {selectionMode === 'start' ? (
                   <>
