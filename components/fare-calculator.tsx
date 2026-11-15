@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
 import dynamic from 'next/dynamic';
 // Dynamically import MrtMap with SSR disabled
 const MrtMap = dynamic(() => import('@/components/mrt-map').then(mod => mod.MrtMap), { 
@@ -21,12 +21,26 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  FARE_FILES,
+  PERIODS,
+  fareForDistance,
+  isOpenIn,
+  periodAt,
+  shortestDistance,
+  type FareTable,
+  type FareType,
+  type Period,
+  type StationDistances,
+  type TimeOfDay,
+} from "@/lib/fares";
 
 type Station = {
   name: string;
   code: string;
   line: string;
   coordinates: [number, number];
+  opens?: string; // ISO date, for stations not yet open
 };
 
 type MrtLine = {
@@ -36,51 +50,46 @@ type MrtLine = {
   stations: string[];
 };
 
-type FareData = {
-  [category: string]: {
-    [paymentMethod: string]: {
-      [timeOfDay: string]: Record<string, number>;
-    };
-  };
-};
-
-type StationDistances = Record<string, Record<string, number>>;
-
-type FareType = "adult" | "student" | "senior";
 // Standard (cash) single-trip tickets were discontinued in March 2022 — all fares are card (SimplyGo)
-type PaymentMethod = "card";
-type TimeOfDay = "peak" | "offPeak";
 type SelectionMode = 'browse' | 'start' | 'end';
+
+// The period in force today is only known in the browser. The server render (and
+// hydration) uses the current period, then the client switches if needed.
+const subscribeToNothing = () => () => {};
+const getTodayPeriod = () => periodAt(Date.now());
+const getServerPeriod = (): Period => "current";
 
 export default function FareCalculator() {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<MrtLine[]>([]);
-  const [fareData, setFareData] = useState<FareData | null>(null);
+  const [fareTables, setFareTables] = useState<Record<Period, FareTable> | null>(null);
   const [stationDistances, setStationDistances] = useState<StationDistances | null>(null);
+  const todayPeriod = useSyncExternalStore(subscribeToNothing, getTodayPeriod, getServerPeriod);
+  const [chosenPeriod, setChosenPeriod] = useState<Period | null>(null);
+  const period = chosenPeriod ?? todayPeriod;
+  const [resultPeriod, setResultPeriod] = useState<Period>("current");
   const [selectedLine, setSelectedLine] = useState<string | null>(null);
   const [selectedDestLine, setSelectedDestLine] = useState<string | null>(null);
   const [selectedStartStation, setSelectedStartStation] = useState<Station | null>(null);
   const [selectedEndStation, setSelectedEndStation] = useState<Station | null>(null);
   const [fareType, setFareType] = useState<FareType>("adult");
-  const paymentMethod: PaymentMethod = "card";
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>("peak");
   const [fare, setFare] = useState<number | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
   const [showMapDialog, setShowMapDialog] = useState(false);
   const [mapSelectionMode, setMapSelectionMode] = useState<SelectionMode>('browse');
 
+  // Stations open in the chosen period (new stations are hidden before they open)
+  const openStations = stations.filter(station => isOpenIn(station, period));
+
   // Get stations by line
   const getStationsByLine = (lineId: string | null) => {
-    if (!stations || !Array.isArray(stations)) {
-      return [];
-    }
-
     if (!lineId || lineId === 'all') {
-      return stations;
+      return openStations;
     }
 
     // Filter stations by checking if their station code starts with the line code
-    return stations.filter(station => station.code.startsWith(lineId));
+    return openStations.filter(station => station.code.startsWith(lineId));
   };
 
   // Filter stations based on selected line
@@ -91,20 +100,22 @@ export default function FareCalculator() {
     // Fetch MRT stations data
     const fetchData = async () => {
       try {
-        const [stationsResponse, linesResponse, fareResponse, distancesResponse] = await Promise.all([
+        const [stationsResponse, linesResponse, fareResponse, newFareResponse, distancesResponse] = await Promise.all([
           fetch('/data/mrt_stations.json'),
           fetch('/data/mrt_lines.json'),
-          fetch('/data/lta_fare_data.json'),
+          fetch(FARE_FILES.current),
+          fetch(FARE_FILES.dec2026),
           fetch('/data/station_distances.json')
         ]);
 
-        if (!stationsResponse.ok || !linesResponse.ok || !fareResponse.ok || !distancesResponse.ok) {
+        if (!stationsResponse.ok || !linesResponse.ok || !fareResponse.ok || !newFareResponse.ok || !distancesResponse.ok) {
           throw new Error('Failed to fetch data');
         }
 
         const stationsData = await stationsResponse.json();
         const linesData = await linesResponse.json();
         const fareData = await fareResponse.json();
+        const newFareData = await newFareResponse.json();
         const distancesData = await distancesResponse.json();
         setStationDistances(distancesData);
 
@@ -121,7 +132,7 @@ export default function FareCalculator() {
         }));
         setLines(Array.isArray(linesArray) ? linesArray : []);
         
-        setFareData(fareData);
+        setFareTables({ current: fareData, dec2026: newFareData });
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -130,80 +141,39 @@ export default function FareCalculator() {
     fetchData();
   }, []);
 
-  // Calculate shortest path distance between stations using Dijkstra's algorithm
-  // This routes through the actual rail network instead of using straight-line distance
-  const calculateDistance = () => {
-    if (!selectedStartStation || !selectedEndStation || !stationDistances) {
+  // Shortest path along the rail network (Dijkstra), using only stations open in the
+  // period, then the fare band for that distance from the period's fare table
+  const calculateFare = (start: Station | null, end: Station | null, forPeriod: Period) => {
+    if (!start || !end || !stationDistances || !fareTables) {
       return null;
     }
 
-    const start = selectedStartStation.code;
-    const end = selectedEndStation.code;
-
-    if (start === end) return 0;
-
-    const dist: Record<string, number> = {};
-    const visited = new Set<string>();
-    const pq: [number, string][] = [[0, start]];
-    dist[start] = 0;
-
-    while (pq.length > 0) {
-      pq.sort((a, b) => a[0] - b[0]);
-      const [d, u] = pq.shift()!;
-
-      if (visited.has(u)) continue;
-      visited.add(u);
-
-      if (u === end) break;
-
-      const neighbors = stationDistances[u];
-      if (!neighbors) continue;
-
-      for (const [v, w] of Object.entries(neighbors)) {
-        const newDist = d + w;
-        if (dist[v] === undefined || newDist < dist[v]) {
-          dist[v] = newDist;
-          pq.push([newDist, v]);
-        }
-      }
-    }
-
-    return dist[end] ?? null;
-  };
-
-  // Calculate fare based on distance
-  const calculateFare = () => {
-    if (!selectedStartStation || !selectedEndStation || !fareData) {
-      return null;
-    }
-
-    const distance = calculateDistance();
+    const openCodes = new Set(stations.filter(s => isOpenIn(s, forPeriod)).map(s => s.code));
+    const distance = shortestDistance(stationDistances, start.code, end.code, code => openCodes.has(code));
     if (distance === null) return null;
 
-    setDistance(distance);
+    return { distance, fare: fareForDistance(fareTables[forPeriod], fareType, timeOfDay, distance) };
+  };
 
-    // Find the appropriate fare tier based on distance
-    const fareTiers = fareData[fareType][paymentMethod][timeOfDay];
-    let fare = 0;
-
-    // Sort the distance tiers and find the appropriate one
-    const tiers = fareTiers ? Object.keys(fareTiers).map(Number).sort((a, b) => a - b) : [];
-    
-    for (let i = 0; i < tiers.length; i++) {
-      const tier = tiers[i];
-      if (distance <= tier) {
-        fare = fareTiers[tier.toString()];
-        break;
-      }
+  const showResult = (start: Station | null, end: Station | null, forPeriod: Period) => {
+    const result = calculateFare(start, end, forPeriod);
+    if (result === null) {
+      setFare(null);
+      return;
     }
+    setDistance(result.distance);
+    setFare(result.fare);
+    setResultPeriod(forPeriod);
+  };
 
-    // If no tier matched (distance is greater than all tiers), use the highest tier
-    if (fare === 0 && tiers.length > 0) {
-      const highestTier = tiers[tiers.length - 1];
-      fare = fareTiers[highestTier.toString()];
-    }
-
-    return fare;
+  // Switch fare period: drop stations that are not open yet, and reprice a shown fare
+  const handlePeriodChange = (next: Period) => {
+    setChosenPeriod(next);
+    const start = selectedStartStation && isOpenIn(selectedStartStation, next) ? selectedStartStation : null;
+    const end = selectedEndStation && isOpenIn(selectedEndStation, next) ? selectedEndStation : null;
+    if (start !== selectedStartStation) setSelectedStartStation(null);
+    if (end !== selectedEndStation) setSelectedEndStation(null);
+    if (fare !== null) showResult(start, end, next);
   };
 
   // Handle station selection from map
@@ -221,10 +191,7 @@ export default function FareCalculator() {
 
   // Handle calculate fare button click
   const handleCalculateFare = () => {
-    const calculatedFare = calculateFare();
-    if (calculatedFare !== null) {
-      setFare(calculatedFare);
-    }
+    showResult(selectedStartStation, selectedEndStation, period);
   };
 
   // Get station name with code
@@ -254,6 +221,33 @@ export default function FareCalculator() {
 
   return (
     <div>
+      <div className="mb-4 sm:mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="sm:max-w-md">
+          <p className="font-mono text-xs tracking-widest uppercase text-neutral-500">Fares and stations</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            New fares and three new stations (Bedok South, Sungei Bedok and Xilin) from 26 Dec 2026.
+          </p>
+        </div>
+        <div role="group" aria-label="Fare period" className="inline-flex shrink-0 self-start sm:self-auto rounded-md border border-input bg-muted/50 p-0.5">
+          {PERIODS.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              aria-pressed={period === p.id}
+              onClick={() => handlePeriodChange(p.id)}
+              className={`flex items-center gap-1.5 rounded px-3 py-1.5 text-sm transition-colors ${
+                period === p.id
+                  ? "bg-background font-medium text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {period === p.id && <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#b5484d]"></span>}
+              {p.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="grid gap-4 sm:gap-8 md:grid-cols-2">
         <Card className="md:h-full">
           <CardHeader className="pb-2 sm:pb-3">
@@ -559,7 +553,12 @@ export default function FareCalculator() {
                 
                 <div className="pt-4 border-t">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-base font-medium">Total Fare</h3>
+                    <div>
+                      <h3 className="text-base font-medium">Total Fare</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {PERIODS.find((p) => p.id === resultPeriod)?.summary}
+                      </p>
+                    </div>
                     <p className="text-3xl font-semibold tabular-nums tracking-tight">${fare.toFixed(2)}</p>
                   </div>
                 </div>
@@ -576,8 +575,8 @@ export default function FareCalculator() {
           </DialogHeader>
           
           <div className="flex-1 overflow-hidden relative">
-            <MrtMap 
-              stations={stations} 
+            <MrtMap
+              stations={openStations}
               lines={lines} 
               selectedStartStation={selectedStartStation}
               selectedEndStation={selectedEndStation}

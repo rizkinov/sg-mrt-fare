@@ -7,6 +7,11 @@
 // NS12 Canberra, DT4 Hume, full TEL through Stage 4 (TE29 Bayshore, with
 // TE21/TE22A not yet open), and Circle Line Stage 6 (CC30-CC32) which closes
 // the loop into Marina Bay/Bayfront.
+//
+// It also holds TEL Stage 5 and the DTL3 extension, which open on 26 Dec 2026
+// (LTA news release, 4 Nov 2026): TE30 Bedok South, TE31/DT37 Sungei Bedok and
+// DT36 Xilin. Those stations carry "opens": "2026-12-26" in mrt_stations.json,
+// and the app leaves them out of routing before that date.
 
 const fs = require('fs');
 const stations = require('../public/data/mrt_stations.json');
@@ -78,8 +83,9 @@ const railConnections = [
   ['DT23', 'DT24'], ['DT24', 'DT25'], ['DT25', 'DT26'], ['DT26', 'DT27'],
   ['DT27', 'DT28'], ['DT28', 'DT29'], ['DT29', 'DT30'], ['DT30', 'DT31'],
   ['DT31', 'DT32'], ['DT32', 'DT33'], ['DT33', 'DT34'], ['DT34', 'DT35'],
+  ['DT35', 'DT36'], ['DT36', 'DT37'], // DTL3 extension, opens 26 Dec 2026
 
-  // Thomson-East Coast Line (through Stage 4)
+  // Thomson-East Coast Line (through Stage 5)
   ['TE1', 'TE2'], ['TE2', 'TE3'], ['TE3', 'TE4'], ['TE4', 'TE5'],
   ['TE5', 'TE6'], ['TE6', 'TE7'], ['TE7', 'TE8'], ['TE8', 'TE9'],
   ['TE9', 'TE10'], ['TE10', 'TE11'], ['TE11', 'TE12'], ['TE12', 'TE13'],
@@ -89,6 +95,7 @@ const railConnections = [
   ['TE22', 'TE23'], // TE22A Founders' Memorial not yet open
   ['TE23', 'TE24'], ['TE24', 'TE25'], ['TE25', 'TE26'], ['TE26', 'TE27'],
   ['TE27', 'TE28'], ['TE28', 'TE29'],
+  ['TE29', 'TE30'], ['TE30', 'TE31'], // Stage 5, opens 26 Dec 2026
 ];
 
 // Interchange connections (distance = 0, same physical station)
@@ -120,6 +127,7 @@ const verifiedInterchanges = [
   ['CC10', 'DT26'],  // MacPherson
   ['EW2', 'DT32'],   // Tampines
   ['DT10', 'TE11'],  // Stevens
+  ['TE31', 'DT37'],  // Sungei Bedok (opens 26 Dec 2026)
   // Bayfront (DT16) doubles as CC34; Marina Bay (NS27/TE20) doubles as CC33 —
   // modelled via the rail edges above rather than duplicate station entries.
   // Expo: DT35 <-> CG1 (CG branch not in our data, skip)

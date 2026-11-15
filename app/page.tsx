@@ -24,8 +24,8 @@ export default function Home() {
         </div>
 
         <footer className="mt-12 text-sm text-muted-foreground border-t pt-6 space-y-2">
-          <p>Fare calculations are based on data from the Land Transport Authority (LTA) and data.gov.sg. Fares effective from 27 December 2025.</p>
-          <p>Station network as of 12 July 2026, including Circle Line Stage 6 (Keppel, Cantonment and Prince Edward Road).</p>
+          <p>Fare calculations are based on data from the Land Transport Authority (LTA), the Public Transport Council (PTC) and data.gov.sg. Fares effective from 27 December 2025, and from 26 December 2026 as approved in PTC&apos;s Fare Review Exercise 2026.</p>
+          <p>Station network as of 12 July 2026, including Circle Line Stage 6 (Keppel, Cantonment and Prince Edward Road). Bedok South, Sungei Bedok and Xilin open on 26 December 2026.</p>
           <p>Actual fares may vary slightly from the calculated amounts. Distance calculations are approximate.</p>
           <p className="pt-2">
             Part of{" "}

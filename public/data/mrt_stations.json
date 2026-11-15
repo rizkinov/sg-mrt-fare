@@ -1196,6 +1196,26 @@
       1.3352
     ]
   },
+  "DT36": {
+    "name": "Xilin",
+    "code": "DT36",
+    "line": "DT",
+    "coordinates": [
+      103.9649,
+      1.3289
+    ],
+    "opens": "2026-12-26"
+  },
+  "DT37": {
+    "name": "Sungei Bedok",
+    "code": "DT37",
+    "line": "DT",
+    "coordinates": [
+      103.9572,
+      1.3204
+    ],
+    "opens": "2026-12-26"
+  },
   "TE1": {
     "name": "Woodlands North",
     "code": "TE1",
@@ -1447,5 +1467,25 @@
       103.9423,
       1.3131
     ]
+  },
+  "TE30": {
+    "name": "Bedok South",
+    "code": "TE30",
+    "line": "TE",
+    "coordinates": [
+      103.9493,
+      1.3167
+    ],
+    "opens": "2026-12-26"
+  },
+  "TE31": {
+    "name": "Sungei Bedok",
+    "code": "TE31",
+    "line": "TE",
+    "coordinates": [
+      103.9572,
+      1.3204
+    ],
+    "opens": "2026-12-26"
   }
 }
