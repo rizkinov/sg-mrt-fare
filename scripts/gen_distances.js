@@ -6,7 +6,10 @@
 // Network reflects stations open for passenger service as of 12 July 2026:
 // NS12 Canberra, DT4 Hume, full TEL through Stage 4 (TE29 Bayshore, with
 // TE21/TE22A not yet open), and Circle Line Stage 6 (CC30-CC32) which closes
-// the loop into Marina Bay/Bayfront.
+// the loop into Marina Bay/Bayfront. The East-West Line runs to EW33 Tuas Link,
+// with the Changi Airport branch (EW4 Tanah Merah - CG1 Expo - CG2 Changi
+// Airport), and the North-East Line to NE18 Punggol Coast (added 15 Nov 2026;
+// they had been missing from the data).
 //
 // It also holds TEL Stage 5 and the DTL3 extension, which open on 26 Dec 2026
 // (LTA news release, 4 Nov 2026): TE30 Bedok South, TE31/DT37 Sungei Bedok and
@@ -52,13 +55,19 @@ const railConnections = [
   ['EW13', 'EW14'], ['EW14', 'EW15'], ['EW15', 'EW16'], ['EW16', 'EW17'],
   ['EW17', 'EW18'], ['EW18', 'EW19'], ['EW19', 'EW20'], ['EW20', 'EW21'],
   ['EW21', 'EW22'], ['EW22', 'EW23'], ['EW23', 'EW24'],
+  ['EW24', 'EW25'], ['EW25', 'EW26'], ['EW26', 'EW27'], ['EW27', 'EW28'],
+  ['EW28', 'EW29'], ['EW29', 'EW30'], ['EW30', 'EW31'], ['EW31', 'EW32'],
+  ['EW32', 'EW33'],
+
+  // East-West Line, Changi Airport branch
+  ['EW4', 'CG1'], ['CG1', 'CG2'],
 
   // North-East Line
   ['NE1', 'NE3'], // NE2 not built
   ['NE3', 'NE4'], ['NE4', 'NE5'], ['NE5', 'NE6'], ['NE6', 'NE7'],
   ['NE7', 'NE8'], ['NE8', 'NE9'], ['NE9', 'NE10'], ['NE10', 'NE11'],
   ['NE11', 'NE12'], ['NE12', 'NE13'], ['NE13', 'NE14'], ['NE14', 'NE15'],
-  ['NE15', 'NE16'], ['NE16', 'NE17'],
+  ['NE15', 'NE16'], ['NE16', 'NE17'], ['NE17', 'NE18'],
 
   // Circle Line (Stage 6 closes the loop from 12 Jul 2026)
   ['CC1', 'CC2'], ['CC2', 'CC3'], ['CC3', 'CC4'], ['CC4', 'CC5'],
@@ -130,7 +139,7 @@ const verifiedInterchanges = [
   ['TE31', 'DT37'],  // Sungei Bedok (opens 26 Dec 2026)
   // Bayfront (DT16) doubles as CC34; Marina Bay (NS27/TE20) doubles as CC33 —
   // modelled via the rail edges above rather than duplicate station entries.
-  // Expo: DT35 <-> CG1 (CG branch not in our data, skip)
+  ['DT35', 'CG1'],   // Expo
 ];
 
 const graph = {};
@@ -164,7 +173,7 @@ const sorted = {};
 const sortedKeys = Object.keys(graph).sort((a, b) => {
   const lineA = a.match(/^[A-Z]+/)[0];
   const lineB = b.match(/^[A-Z]+/)[0];
-  const lineOrder = ['NS', 'EW', 'NE', 'CC', 'DT', 'TE'];
+  const lineOrder = ['NS', 'EW', 'CG', 'NE', 'CC', 'DT', 'TE'];
   const orderA = lineOrder.indexOf(lineA);
   const orderB = lineOrder.indexOf(lineB);
   if (orderA !== orderB) return orderA - orderB;

@@ -10,7 +10,7 @@ A web application that calculates MRT fares between stations in Singapore's Mass
 - Automatic fare calculation based on distance between stations
 - Card (SimplyGo) fares effective 27 December 2025 — standard/cash single-trip tickets were discontinued in March 2022
 - Fares from 26 December 2026 (PTC Fare Review Exercise 2026), switched in the browser at 00:00 Singapore time, with a toggle to view either period
-- Station network as of 12 July 2026, including Circle Line Stage 6, plus Bedok South, Sungei Bedok and Xilin from 26 December 2026
+- Station network as of 12 July 2026, including Circle Line Stage 6, the East-West Line to Tuas Link, the Changi Airport branch and Punggol Coast, plus Bedok South, Sungei Bedok and Xilin from 26 December 2026
 - Responsive design for mobile and desktop
 
 ## Technologies Used

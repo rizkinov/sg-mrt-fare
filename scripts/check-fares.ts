@@ -95,9 +95,34 @@ const journeys: { from: string; to: string; current: Expect; dec2026: Expect }[]
     dec2026: { km: [4.2, 5.2], band: "4.3 km - 5.2 km", cents: [162, 112, 92, 42, 71, 21] },
   },
   {
-    // Bayshore to Expo: today the long way round through the city, from 26 Dec via Sungei Bedok
+    // Bayshore to Expo: today the long way round (through Tanah Merah and the Changi
+    // Airport branch), from 26 Dec via Sungei Bedok
     from: "TE29", to: "DT35",
-    current: { km: [34.2, 35.2], band: "34.3 km - 35.2 km / over 7.2 km", cents: [251, 201, 107, 57, 78, 28] },
+    current: { km: [29.2, 30.2], band: "29.3 km - 30.2 km / over 7.2 km", cents: [246, 196, 107, 57, 78, 28] },
+    dec2026: { km: [4.2, 5.2], band: "4.3 km - 5.2 km", cents: [162, 112, 92, 42, 71, 21] },
+  },
+  {
+    // Changi Airport branch (added 15 Nov 2026)
+    from: "CG2", to: "EW13",
+    current: { km: [19.2, 20.2], band: "19.3 km - 20.2 km / over 7.2 km", cents: [227, 177, 107, 57, 78, 28] },
+    dec2026: { km: [19.2, 20.2], band: "19.3 km - 20.2 km / over 7.2 km", cents: [240, 190, 112, 62, 83, 33] },
+  },
+  {
+    // West end of the East-West Line (added 15 Nov 2026)
+    from: "EW27", to: "EW24",
+    current: { km: [5.2, 6.2], band: "5.3 km - 6.2 km", cents: [159, 109, 94, 44, 71, 21] },
+    dec2026: { km: [5.2, 6.2], band: "5.3 km - 6.2 km", cents: [172, 122, 99, 49, 76, 26] },
+  },
+  {
+    // Punggol Coast (added 15 Nov 2026)
+    from: "NE18", to: "NE6",
+    current: { km: [17.2, 18.2], band: "17.3 km - 18.2 km / over 7.2 km", cents: [220, 170, 107, 57, 78, 28] },
+    dec2026: { km: [17.2, 18.2], band: "17.3 km - 18.2 km / over 7.2 km", cents: [233, 183, 112, 62, 83, 33] },
+  },
+  {
+    // Bedok to Xilin from 26 Dec goes through Tanah Merah and Expo
+    from: "EW5", to: "DT36",
+    current: null,
     dec2026: { km: [4.2, 5.2], band: "4.3 km - 5.2 km", cents: [162, 112, 92, 42, 71, 21] },
   },
 ];

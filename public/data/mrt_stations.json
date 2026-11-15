@@ -458,6 +458,105 @@
       1.3331
     ]
   },
+  "EW25": {
+    "name": "Chinese Garden",
+    "code": "EW25",
+    "line": "EW",
+    "coordinates": [
+      103.7326,
+      1.3424
+    ]
+  },
+  "EW26": {
+    "name": "Lakeside",
+    "code": "EW26",
+    "line": "EW",
+    "coordinates": [
+      103.7209,
+      1.3443
+    ]
+  },
+  "EW27": {
+    "name": "Boon Lay",
+    "code": "EW27",
+    "line": "EW",
+    "coordinates": [
+      103.7061,
+      1.3386
+    ]
+  },
+  "EW28": {
+    "name": "Pioneer",
+    "code": "EW28",
+    "line": "EW",
+    "coordinates": [
+      103.6973,
+      1.3376
+    ]
+  },
+  "EW29": {
+    "name": "Joo Koon",
+    "code": "EW29",
+    "line": "EW",
+    "coordinates": [
+      103.6784,
+      1.3277
+    ]
+  },
+  "EW30": {
+    "name": "Gul Circle",
+    "code": "EW30",
+    "line": "EW",
+    "coordinates": [
+      103.6605,
+      1.3195
+    ]
+  },
+  "EW31": {
+    "name": "Tuas Crescent",
+    "code": "EW31",
+    "line": "EW",
+    "coordinates": [
+      103.6491,
+      1.321
+    ]
+  },
+  "EW32": {
+    "name": "Tuas West Road",
+    "code": "EW32",
+    "line": "EW",
+    "coordinates": [
+      103.6396,
+      1.33
+    ]
+  },
+  "EW33": {
+    "name": "Tuas Link",
+    "code": "EW33",
+    "line": "EW",
+    "coordinates": [
+      103.637,
+      1.3409
+    ]
+  },
+  "CG1": {
+    "name": "Expo",
+    "code": "CG1",
+    "line": "CG",
+    "coordinates": [
+      103.9615,
+      1.3345
+    ]
+  },
+  "CG2": {
+    "name": "Changi Airport",
+    "code": "CG2",
+    "line": "CG",
+    "coordinates": [
+      103.9879,
+      1.3575
+    ]
+  },
   "NE1": {
     "name": "HarbourFront",
     "code": "NE1",
@@ -600,6 +699,15 @@
     "coordinates": [
       103.9023,
       1.4047
+    ]
+  },
+  "NE18": {
+    "name": "Punggol Coast",
+    "code": "NE18",
+    "line": "NE",
+    "coordinates": [
+      103.9102,
+      1.4149
     ]
   },
   "CC1": {
