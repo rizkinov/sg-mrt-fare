@@ -18,8 +18,10 @@
  *
  * Both providers need the map's attribution control. Do not turn it off.
  *
- * maplibre-gl is pinned to 4.7.1, the build sg-rent-map uses: it carries its
- * worker inline. 6.16.0 failed there (Next 14) with "Worker failed to load".
+ * maplibre-gl is pinned to 6.18.0 (4.7.1 had a critical advisory). Version 6
+ * loads its worker from a separate file, so components/basemap.tsx has webpack
+ * copy that file into the build and passes its URL to setWorkerUrl. Without
+ * that the map fails with "Worker failed to load".
  */
 export const BASEMAP_STYLE = 'https://tiles.openfreemap.org/styles/positron'
 

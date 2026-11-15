@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { TileLayer, useMap } from 'react-leaflet'
 import L from 'leaflet'
+import { setWorkerUrl } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import '@maplibre/maplibre-gl-leaflet'
 import {
@@ -13,6 +14,12 @@ import {
   FALLBACK_MIN_ZOOM,
   FALLBACK_TILES,
 } from '@/lib/basemap'
+
+// MapLibre 6 keeps its worker in a separate file and looks for it next to
+// itself through import.meta.url, which webpack rewrites to a file:// path,
+// so on its own it fails with "Worker failed to load". This `new URL` form
+// makes webpack copy the worker into the build; tell MapLibre where it is.
+setWorkerUrl(new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', import.meta.url).href)
 
 function hasWebGL(): boolean {
   try {
